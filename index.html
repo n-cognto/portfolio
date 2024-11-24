@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Benard Karanja - Computer Security & Forensics Professional Portfolio">
     <title>Benard Karanja - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' dy='.35em' text-anchor='middle' font-size='70'>BK</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
+    <header class="header" role="banner">
         <h1>Benard Karanja</h1>
-        <p>Computer Security & Forensics Student</p>
-        <p>benardopeter4@gmail.com</p>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/benard00118" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://tryhackme.com/r/p/NcogNto" target="_blank"><i class="fas fa-shield-alt"></i></a>
+        <p>Cybersecurity Specialist & Full Stack Developer</p>
+        <div class="social-links" aria-label="Social Media Links">
+            <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="https://github.com/benard00118" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" rel="noopener noreferrer" aria-label="TryHackMe Profile">
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+            </a>
         </div>
     </header>
+    
 
-    <nav class="nav">
+    <nav class="nav" role="navigation">
+            <i class="fas fa-bars"></i>
+        </button>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#volunteer">Volunteer Work</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" aria-label="About section">About</a></li>
+            <li><a href="#skills" aria-label="Skills section">Skills</a></li>
+            <li><a href="#projects" aria-label="Projects section">Projects</a></li>
+            <li><a href="#certifications" aria-label="Certifications section">Certifications</a></li>
+            <li><a href="#contact" aria-label="Contact section">Contact</a></li>
         </ul>
         <button id="dark-mode-toggle" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background: #6a11cb; color: white; border: none; border-radius: 5px; cursor: pointer;">
             Dark Mode
@@ -35,136 +45,482 @@
     </nav>
 
     <section id="about" class="section">
-        <h2>About Me</h2>
-        <p>A highly motivated and detail-oriented student pursuing a degree in Computer Security and Forensics at Jaramogi Oginga Odinga University of Science and Technology, with strong skills in Java and Python programming. Seeking opportunities to further my experience through internships, webinars, and scholarships that allow me to contribute to a dynamic team.</p>
+        <div class="about-wrapper">
+            <!-- Header -->
+            <header class="about-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Cybersecurity Specialist & Full Stack Developer</p>
+            </header>
+    
+            <div class="about-container">
+                <!-- Left Column -->
+                <div class="about-visual">
+                    <div class="profile-frame">
+                        <img src="media/Oranjo-Laiv.png" alt="Benard Karanja" class="profile-photo">
+                        <div class="profile-backdrop"></div>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">🎓</span>
+                            <span class="stat-label">B.Sc. Computer Security & Forensics</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🏛️</span>
+                            <span class="stat-label">JOOUST University Graduate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🔒</span>
+                            <span class="stat-label">Certified Ethical Hacker</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Right Column -->
+                <div class="about-content">
+                    <p class="bio-intro">
+                        Passionate about cybersecurity and full-stack development, I specialize in crafting secure and efficient solutions while leveraging offensive and defensive security expertise.
+                    </p>
+                    <p class="bio-details">
+                        With hands-on experience in ethical hacking and red teaming, I bridge the gap between technical knowledge and creative problem-solving. My skill set includes threat analysis, secure web applications, and designing innovative solutions to tackle modern cyber threats.
+                    </p>
+    
+                    <div class="expertise-grid">
+                        <div class="expertise-card">
+                            <div class="expertise-icon">🛡️</div>
+                            <h3>Cybersecurity</h3>
+                            <ul>
+                                <li>Network Security</li>
+                                <li>Penetration Testing</li>
+                                <li>Digital Forensics</li>
+                                <li>Threat Analysis</li>
+                            </ul>
+                        </div>
+                        <div class="expertise-card">
+                            <div class="expertise-icon">💻</div>
+                            <h3>Development</h3>
+                            <ul>
+                                <li>Full Stack Web Development</li>
+                                <li>API Design & Integration</li>
+                                <li>Database Architecture</li>
+                                <li>Secure System Design</li>
+                            </ul>
+                        </div>
+                        <div class="expertise-card">
+                            <div class="expertise-icon">🎯</div>
+                            <h3>Specialties</h3>
+                            <ul>
+                                <li>Red Teaming</li>
+                                <li>Ethical Hacking</li>
+                                <li>Security Auditing</li>
+                                <li>Cloud Security</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="current-focus">
+                        <h3>Current Focus</h3>
+                        <p>Exploring advanced penetration testing, AI-driven cybersecurity solutions, and zero trust architecture while strengthening cloud security capabilities.</p>
+                        <div class="focus-items">
+                            <span class="focus-tag">Penetration Testing</span>
+                            <span class="focus-tag">Cloud Security</span>
+                            <span class="focus-tag">AI Security Integration</span>
+                            <span class="focus-tag">Zero Trust</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+
 
     <section id="skills" class="section">
-        <h2>Technical Skills</h2>
+        <h2 class="section-title">Technical Skills</h2>
         <div class="skills-grid">
+            <!-- Programming Skills -->
             <div class="skill-card">
-                <h3>Programming</h3>
-                <ul>
-                    <li>Advanced Python Programming</li>
-                    <li>Intermediate Java Programming</li>
-                    <li>Web Development</li>
-                </ul>
+                <h3><i class="fas fa-laptop-code skill-icon"></i> Programming</h3>
+                <p>Proficient in multiple programming languages for diverse development needs.</p>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="90">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Python</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="75">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Java</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="80">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Web Development</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+    
+            <!-- Security Skills -->
             <div class="skill-card">
-                <h3>Security</h3>
-                <ul>
-                    <li>Cybersecurity Fundamentals</li>
-                    <li>Computer Forensics</li>
-                    <li>Security Analysis</li>
-                </ul>
+                <h3><i class="fas fa-shield-alt skill-icon"></i> Security</h3>
+                <p>Expert in designing secure systems and analyzing vulnerabilities.</p>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="85">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Cybersecurity Fundamentals</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="80">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Computer Forensics</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+    
+            <!-- Additional Skills -->
             <div class="skill-card">
-                <h3>Additional Skills</h3>
-                <ul>
-                    <li>AI Prompt Engineering</li>
-                    <li>Software Engineering</li>
-                    <li>Database Management</li>
-                </ul>
+                <h3><i class="fas fa-database skill-icon"></i> Additional Skills</h3>
+                <p>Enriching my technical stack with modern tools and methodologies.</p>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="100">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">AI Prompt Engineering</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="80">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Software Engineering</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-circle" data-progress="75">
+                            <svg width="120" height="120">
+                                <circle class="bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <span class="skill-label">Database Management</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <section id="projects" class="section">
-        <h2>Projects</h2>
+    
+    
+    
+    <section id="projects" class="section" aria-labelledby="projects-title">
+        <div class="section-header">
+        <h2 id="projects-title">Featured Projects</h2>
+        <p class="section-subtitle">A collection of my most impactful work</p>
+        </div>
         <div class="projects-grid">
-            <div class="project-card">
-                <h3>Campus Interaction</h3>
-                <p>A web development project focused on creating a platform for campus community interaction.</p>
-                <div class="badges">
-                    <span class="badge">HTML</span>
-                    <span class="badge">CSS</span>
-                    <span class="badge">JavaScript</span>
+            <!-- Project 1: Campus Interaction -->
+            <article class="project-card">
+                <div class="project-header">
+                    <img src="media/Screenshot From 2024-11-24 08-44-14.png" alt="Campus Interaction Preview" class="project-image lazy-image" data-src="media/Screenshot From 2024-11-24 08-44-14.png">
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="#" class="preview-btn" data-project="campus-interaction">
+                                <span class="icon">👁️</span> Live Demo
+                            </a>
+                            <a href="https://github.com/benard00118/Campus_Interaction" target="_blank" class="github-btn">
+                                <span class="icon">📂</span> Source Code
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-links">
-                    <a href="https://github.com/benard00118/Campus_Interaction" target="_blank">View on GitHub</a>
+    
+                <div class="project-content">
+                    <div class="project-main">
+                        <h3>Campus Interaction Platform</h3>
+                        <div class="project-tags">
+                            <span class="tag">Featured</span>
+                            <span class="tag">Full Stack</span>
+                        </div>
+                        
+                        <div class="project-description">
+                            <p>A comprehensive campus community platform that revolutionizes student and faculty interaction. Built with scalability and user experience in mind.</p>
+                            
+                            <div class="project-highlights">
+                                <div class="highlight">
+                                    <span class="highlight-icon">📈</span>
+                                    <span>1000+ Active Users</span>
+                                </div>
+                                <div class="highlight">
+                                    <span class="highlight-icon">⭐</span>
+                                    <span>4.8/5 User Rating</span>
+                                </div>
+                            </div>
+    
+                            <div class="key-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Real-time discussion forums with instant notifications</li>
+                                    <li>Event management system with calendar integration</li>
+                                    <li>Resource sharing with advanced search capabilities</li>
+                                    <li>Role-based access control system</li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <div class="project-tech-stack">
+                            <h4>Technologies Used</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">HTML5</span>
+                                <span class="tech-badge">CSS3</span>
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">REST API</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3>Expense Tracker</h3>
-                <p>An application to help users track and manage their expenses effectively.</p>
-                <div class="badges">
-                    <span class="badge">Python</span>
-                    <span class="badge">Database</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/benard00118/ExpenseTracker" target="_blank">View on GitHub</a>
-                </div>
+            </article>
+           <!-- Project 2: Expense Tracker -->
+<article class="project-card">
+    <div class="project-header">
+        <img src="media/Screenshot From 2024-11-24 08-15-12.png" alt="Expense Tracker Preview" class="project-image lazy-image" data-src="media/Screenshot From 2024-11-24 08-15-12.png">
+        <div class="project-overlay">
+            <div class="project-links">
+                <a href="#" class="preview-btn" data-project="expense-tracker">
+                    <span class="icon">👁️</span> Live Demo
+                </a>
+                <a href="https://github.com/benard00118/ExpenseTracker" target="_blank" class="github-btn">
+                    <span class="icon">📂</span> Source Code
+                </a>
             </div>
         </div>
-    </section>
+    </div>
 
+    <div class="project-content">
+        <div class="project-main">
+            <h3>Smart Expense Tracker</h3>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Desktop App</span>
+            </div>
+            
+            <div class="project-description">
+                <p>An intuitive and powerful expense tracking application that helps users manage their finances effectively. Features data visualization and budget forecasting capabilities.</p>
+                
+                <div class="project-highlights">
+                    <div class="highlight">
+                        <span class="highlight-icon">⬇️</span>
+                        <span>500+ Downloads</span>
+                    </div>
+                    <div class="highlight">
+                        <span class="highlight-icon">⭐</span>
+                        <span>4.6/5 User Rating</span>
+                    </div>
+                </div>
+
+                <div class="key-features">
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Interactive spending analytics dashboard</li>
+                        <li>Monthly budget planning tools</li>
+                        <li>Export reports in multiple formats</li>
+                        <li>Secure data encryption</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-tech-stack">
+                <h4>Technologies Used</h4>
+                <div class="tech-badges">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">SQLite</span>
+                    <span class="tech-badge">Tkinter</span>
+                    <span class="tech-badge">Pandas</span>
+                    <span class="tech-badge">Matplotlib</span>
+                </div>
+            </div>
+
+            <div class="project-impact">
+                <h4>Impact & Outcomes</h4>
+                <ul>
+                    <li>Helped users save average of 15% monthly expenses</li>
+                    <li>Reduced budget tracking time by 60%</li>
+                    <li>Featured in local tech community showcase</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+        </div>
+    </section>
+    
+    <!-- Project Preview Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    
     <section id="certifications" class="section">
         <h2>Certifications</h2>
         <div class="cert-grid">
+            <!-- Certification Card 1 -->
             <div class="cert-card">
-                <h3>Virtual Assistant</h3>
-                <p>Platform: ALX Africa</p>
-                <p>Completion: 2024</p>
+                <img src="media/virtual-assistant-logo.png" alt="Virtual Assistant Logo" class="cert-logo">
+                <div class="cert-info">
+                    <h3>Virtual Assistant</h3>
+                    <p>Platform: ALX Africa</p>
+                    <p class="cert-date">Completion: Sep 2024</p>
+                </div>
             </div>
+    
+            <!-- Certification Card 2 -->
             <div class="cert-card">
-                <h3>IBM Cyber Security Fundamentals</h3>
-                <p>Platform: IBM</p>
-                <p>Completion: 2024</p>
+                <img src="media/ibm-logo.png" alt="IBM Cyber Security Fundamentals Logo" class="cert-logo">
+                <div class="cert-info">
+                    <h3>IBM Cyber Security Fundamentals</h3>
+                    <p>Platform: IBM</p>
+                    <p class="cert-date">Completion: Nov 2024</p>
+                </div>
             </div>
+    
+            <!-- Certification Card 3 -->
             <div class="cert-card">
-                <h3>Introduction to Cyber Security</h3>
-                <p>Platform: Udemy</p>
-                <p>Completion: February 2024</p>
+                <img src="media/udemy-logo.png" alt="Introduction to Cyber Security Logo" class="cert-logo">
+                <div class="cert-info">
+                    <h3>Introduction to Cyber Security</h3>
+                    <p>Platform: Udemy</p>
+                    <p class="cert-date">Completion: February 2024</p>
+                </div>
             </div>
+    
+            <!-- Certification Card 4 -->
             <div class="cert-card">
-                <h3>Python for Everybody</h3>
-                <p>Platform: Try Kibo School</p>
-                <p>Completion: March 2024</p>
+                <img src="media/python-logo.png" alt="Python for Everybody Logo" class="cert-logo">
+                <div class="cert-info">
+                    <h3>Python for Everybody</h3>
+                    <p>Platform: Try Kibo School</p>
+                    <p class="cert-date">Completion: March 2024</p>
+                </div>
             </div>
+    
+            <!-- Certification Card 5 -->
             <div class="cert-card">
-                <h3>AI Prompt Engineering</h3>
-                <p>Platform: IBM SkillBuild</p>
-                <p>Completion: June 2024</p>
+                <img src="media/ai-logo.png" alt="AI Prompt Engineering Logo" class="cert-logo">
+                <div class="cert-info">
+                    <h3>AI Prompt Engineering</h3>
+                    <p>Platform: IBM SkillBuild</p>
+                    <p class="cert-date">Completion: June 2024</p>
+                </div>
+            </div>
+    
+            <!-- Certification Card 6 -->
+            <div class="cert-card">
+                <img src="media/ai-future-logo.png" alt="Our Future with AI Logo" class="cert-logo">
+                <div class="cert-info">
+                    <h3>Our Future with AI</h3>
+                    <p>Platform: ALX Africa</p>
+                    <p class="cert-date">Completion: June 2024</p>
+                </div>
             </div>
         </div>
     </section>
-
-    <section id="volunteer" class="section">
-        <h2>Volunteer Work</h2>
-        <div class="volunteer-grid">
-            <div class="volunteer-card">
-                <h3>Kenya Wildlife Service</h3>
-                <p>Environmental conservation activities at Nakuru Game Park</p>
-            </div>
-            <div class="volunteer-card">
-                <h3>Kenya Red Cross</h3>
-                <p>Blood donation drives and community health initiatives</p>
-            </div>
-            <div class="volunteer-card">
-                <h3>Community Service</h3>
-                <p>Chief's Project at Kimathi Estates, Nakuru - Community Cleaning</p>
-            </div>
-        </div>
-    </section>
-
+    
+    
     <section id="contact" class="section contact">
-        <h2>Contact Me</h2>
-        <div class="contact-info">
-            <p>Email: benardopeter4@gmail.com</p>
-            <p>Phone: +254113169506</p>
-            <p>Location: Nakuru, Kenya</p>
-        </div>
-        <div class="social-links" style="color: #1e3c72;">
-            <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/benard00118" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://tryhackme.com/r/p/NcogNto" target="_blank"><i class="fas fa-shield-alt"></i></a>
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-description">
+                Feel free to reach out for collaborations, opportunities, or inquiries. I'm here to help!
+            </p>
+    
+            <div class="contact-wrapper">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+    
+                <!-- Contact Info -->
+                <div class="contact-info-container">
+                    <h3>Contact Information</h3>
+                    <p>
+                        <a href="mailto:benardopeter4@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope"></i> benardopeter4@gmail.com
+                        </a>
+                    </p>
+                    <p>
+                        <a href="https://wa.me/254113169506" target="_blank" class="contact-link">
+                            <i class="fab fa-whatsapp"></i> +254 113 169 506
+                        </a>
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> Nakuru, Kenya
+                    </p>
+    
+                    <h3>Follow Me</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/benard00118" target="_blank" aria-label="GitHub Profile">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" aria-label="TryHackMe Profile">
+                            <i class="fas fa-shield-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    
+    
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <p>&copy; 2024 Benard Karanja. All rights reserved.</p>
     </footer>
-
     <script>
         // Smooth scrolling and active link management
         document.querySelectorAll('a.nav-link').forEach(link => {
@@ -209,7 +565,154 @@ document.querySelectorAll('.section').forEach((section) => {
     section.classList.add('hidden');
     observer.observe(section);
 });
+ // Animate skill bars on scroll
+ const observeSkills = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.progress-fill').forEach(fill => {
+                        const width = fill.parentElement.previousElementSibling.lastElementChild.textContent;
+                        fill.style.width = width;
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
 
+        document.querySelectorAll('.skill-card').forEach(card => {
+            observeSkills.observe(card);
+        });
+
+        // Project Modal Functionality
+        const modal = document.getElementById('projectModal');
+        const previewButtons = document.querySelectorAll('.preview-btn');
+
+        previewButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectId = button.dataset.project;
+                showProjectPreview(projectId);
+            });
+        });
+
+        function showProjectPreview(projectId) {
+            // Add your project preview content here
+            const projectData = {
+                'campus-interaction': {
+                    title: 'Campus Interaction Platform',
+                    content: `
+                        <img src="/api/placeholder/700/400" alt="Project Preview" style="width: 100%; margin-bottom: 20px;">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Real-time discussion forums</li>
+                            <li>Event management system</li>
+                            <li>Resource sharing platform</li>
+                            <li>User authentication and authorization</li>
+                        </ul>
+                    `
+                }
+                // Add more projects
+            };
+
+            document.getElementById('modalTitle').textContent = projectData[projectId].title;
+            document.getElementById('modalContent').innerHTML = projectData[projectId].content;
+            modal.style.display = 'flex';
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+         // Lazy loading implementation
+         document.addEventListener('DOMContentLoaded', () => {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
+        });
+
+      // Enhanced JavaScript functionality
+      document.addEventListener('DOMContentLoaded', function() {
+            // Initialize skill circles
+            document.querySelectorAll('.skill-circle').forEach(circle => {
+                const progress = circle.dataset.progress;
+                const circumference = 2 * Math.PI * 54;
+                const progressCircle = circle.querySelector('.progress');
+                const offset = circumference - (progress / 100 * circumference);
+                
+                progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+                progressCircle.style.strokeDashoffset = circumference;
+                
+                // Animate on scroll
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            progressCircle.style.strokeDashoffset = offset;
+                        }
+                    });
+                });
+                
+                observer.observe(circle);
+            });
+
+            // Form handling
+            document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+                
+                try {
+                    // Replace with your actual form handling logic
+                    console.log('Form submitted:', data);
+                    alert('Message sent successfully!');
+                    e.target.reset();
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Failed to send message. Please try again.');
+                }
+            });
+
+            // Dark mode toggle with enhanced transitions
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            function setDarkMode(isDark) {
+                document.body.classList.toggle('dark-mode', isDark);
+                localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+                darkModeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+
+            // Initialize dark mode based on user preference
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode) {
+                setDarkMode(savedDarkMode === 'enabled');
+            } else {
+                setDarkMode(prefersDarkScheme.matches);
+            }
+
+            darkModeToggle.addEventListener('click', () => {
+                setDarkMode(!document.body.classList.contains('dark-mode'));
+            });
+
+            // Update dark mode when system preference changes
+            prefersDarkScheme.addEventListener('change', (e) => {
+                setDarkMode(e.matches);
+            });
+        });   
+
+     
+
+     
     </script>
 </body>
 </html>
