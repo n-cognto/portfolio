@@ -7,7 +7,6 @@
     <title>Benard Karanja - Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' dy='.35em' text-anchor='middle' font-size='70'>BK</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,27 +21,21 @@
                 <i class="fab fa-github" aria-hidden="true"></i>
             </a>
             <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" rel="noopener noreferrer" aria-label="TryHackMe Profile">
-                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                <img src="media/simple-icons--tryhackme.svg" alt="" style="width: 30px; height: 30px;">
             </a>
         </div>
     </header>
     
-
     <nav class="nav" role="navigation">
-            <i class="fas fa-bars"></i>
-        </button>
         <ul>
-            <li><a href="#about" aria-label="About section">About</a></li>
-            <li><a href="#skills" aria-label="Skills section">Skills</a></li>
-            <li><a href="#projects" aria-label="Projects section">Projects</a></li>
-            <li><a href="#certifications" aria-label="Certifications section">Certifications</a></li>
-            <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+            <li><a href="#about" class="nav-link" aria-label="About section">About</a></li>
+            <li><a href="#skills" class="nav-link" aria-label="Skills section">Skills</a></li>
+            <li><a href="#projects" class="nav-link" aria-label="Projects section">Projects</a></li>
+            <li><a href="#certifications" class="nav-link" aria-label="Certifications section">Certifications</a></li>
+            <li><a href="#contact" class="nav-link" aria-label="Contact section">Contact</a></li>
         </ul>
-        <button id="dark-mode-toggle" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background: #6a11cb; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Dark Mode
-        </button>
-        
     </nav>
+    
 
     <section id="about" class="section">
         <div class="about-wrapper">
@@ -143,7 +136,7 @@
                 <p>Proficient in multiple programming languages for diverse development needs.</p>
                 <div class="skill-items">
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="90">
+                        <div class="skill-circle" data-progress="90" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -152,7 +145,7 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="75">
+                        <div class="skill-circle" data-progress="75" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -161,7 +154,7 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="80">
+                        <div class="skill-circle" data-progress="80" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -178,7 +171,7 @@
                 <p>Expert in designing secure systems and analyzing vulnerabilities.</p>
                 <div class="skill-items">
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="85">
+                        <div class="skill-circle" data-progress="85" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -187,7 +180,7 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="80">
+                        <div class="skill-circle" data-progress="80" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -204,7 +197,7 @@
                 <p>Enriching my technical stack with modern tools and methodologies.</p>
                 <div class="skill-items">
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="100">
+                        <div class="skill-circle" data-progress="100" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> 
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -213,7 +206,7 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="80">
+                        <div class="skill-circle" data-progress="80" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -222,7 +215,7 @@
                         </div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-circle" data-progress="75">
+                        <div class="skill-circle" data-progress="75" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                             <svg width="120" height="120">
                                 <circle class="bg" cx="60" cy="60" r="54"></circle>
                                 <circle class="progress" cx="60" cy="60" r="54"></circle>
@@ -379,6 +372,7 @@
 </article>
         </div>
     </section>
+
     
     <!-- Project Preview Modal -->
     <div id="projectModal" class="modal">
@@ -394,19 +388,20 @@
         <div class="cert-grid">
             <!-- Certification Card 1 -->
             <div class="cert-card">
-                <img src="media/virtual-assistant-logo.png" alt="Virtual Assistant Logo" class="cert-logo">
+                <img src="media/alx-logo.png" alt="Virtual Assistant Logo" class="cert-logo">
                 <div class="cert-info">
-                    <h3>Virtual Assistant</h3>
+                   <a href="" target="_blank"><h3>Virtual Assistant</h3></a> 
                     <p>Platform: ALX Africa</p>
                     <p class="cert-date">Completion: Sep 2024</p>
                 </div>
             </div>
     
             <!-- Certification Card 2 -->
+             
             <div class="cert-card">
-                <img src="media/ibm-logo.png" alt="IBM Cyber Security Fundamentals Logo" class="cert-logo">
+                <img src="media/ibm-logo.jpeg" alt="IBM Cyber Security Fundamentals Logo" class="cert-logo">
                 <div class="cert-info">
-                    <h3>IBM Cyber Security Fundamentals</h3>
+                    <a href="https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv" target="_blank"><h3>IBM Cyber Security Fundamentals</h3></a>
                     <p>Platform: IBM</p>
                     <p class="cert-date">Completion: Nov 2024</p>
                 </div>
@@ -414,9 +409,9 @@
     
             <!-- Certification Card 3 -->
             <div class="cert-card">
-                <img src="media/udemy-logo.png" alt="Introduction to Cyber Security Logo" class="cert-logo">
+                <img src="media/udemy-logo.jpeg" alt="Introduction to Cyber Security Logo" class="cert-logo">
                 <div class="cert-info">
-                    <h3>Introduction to Cyber Security</h3>
+                   <a href="https://drive.google.com/file/d/151bCSGRgKV_H3iOpW0AznjYVf-81KTgt/view?usp=drive_link"> <h3>Introduction to Exploits</h3></a>
                     <p>Platform: Udemy</p>
                     <p class="cert-date">Completion: February 2024</p>
                 </div>
@@ -424,7 +419,7 @@
     
             <!-- Certification Card 4 -->
             <div class="cert-card">
-                <img src="media/python-logo.png" alt="Python for Everybody Logo" class="cert-logo">
+                <img src="media/python-logo.jpeg" alt="Python for Everybody Logo" class="cert-logo">
                 <div class="cert-info">
                     <h3>Python for Everybody</h3>
                     <p>Platform: Try Kibo School</p>
@@ -434,9 +429,9 @@
     
             <!-- Certification Card 5 -->
             <div class="cert-card">
-                <img src="media/ai-logo.png" alt="AI Prompt Engineering Logo" class="cert-logo">
+                <img src="media/ibm-logo.jpeg" alt="AI Prompt Engineering Logo" class="cert-logo">
                 <div class="cert-info">
-                    <h3>AI Prompt Engineering</h3>
+                   <a href="https://www.credly.com/earner/earned/badge/23be8694-6541-457f-a02f-28e91358bfea" target="_blank"><h3>AI Prompt Engineering</h3></a>
                     <p>Platform: IBM SkillBuild</p>
                     <p class="cert-date">Completion: June 2024</p>
                 </div>
@@ -444,13 +439,24 @@
     
             <!-- Certification Card 6 -->
             <div class="cert-card">
-                <img src="media/ai-future-logo.png" alt="Our Future with AI Logo" class="cert-logo">
+                <img src="media/alx-logo.png" alt="Our Future with AI Logo" class="cert-logo">
                 <div class="cert-info">
-                    <h3>Our Future with AI</h3>
+                   <a href="https://drive.google.com/file/d/1HC1PRgQoEXt5lsJBq8oPxPj5dThwOMhe/view?usp=drive_link" target="_blank"><h3>Our Future with AI</h3></a> 
                     <p>Platform: ALX Africa</p>
                     <p class="cert-date">Completion: June 2024</p>
                 </div>
             </div>
+
+            <!-- Certification Card 7 -->
+            <div class="cert-card">
+                <img src="media/python-logo.jpeg" alt="Python basic Certificate " class="cert-logo">
+                <div class="cert-info">
+                    <a href="https://drive.google.com/file/d/1IWAJQoSBuqPqQG0RZYZERIjor3pSzk8s/view?usp=drive_link"><h3>Python Basics</h3></a>
+                    <p>Platform: Hackerrank</p>
+                    <p class="cert-date">Completion: March 2024</p>
+                </div>
+            </div>
+            
         </div>
     </section>
     
@@ -463,12 +469,13 @@
             </p>
     
             <div class="contact-wrapper">
+                <div class="error-message" id="nameError" role="alert"></div>
                 <!-- Contact Form -->
                 <div class="contact-form-container">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" aria-required="true" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Your Email</label>
@@ -508,10 +515,10 @@
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" aria-label="TryHackMe Profile">
-                            <i class="fas fa-shield-alt"></i>
+                            <img src="media/simple-icons--tryhackme.svg" alt="" style="width: 30px; height: 30px;">
                         </a>
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
     </section>
@@ -521,6 +528,9 @@
     <footer class="footer" role="contentinfo">
         <p>&copy; 2024 Benard Karanja. All rights reserved.</p>
     </footer>
+
+
+
     <script>
         // Smooth scrolling and active link management
         document.querySelectorAll('a.nav-link').forEach(link => {
@@ -541,11 +551,7 @@
                 nav.style.backgroundColor = 'white';
             }
         });
-        const toggle = document.getElementById('dark-mode-toggle');
-toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    toggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
-});
+        
 
 document.body.classList.add('transition');
 const observer = new IntersectionObserver(
@@ -584,6 +590,7 @@ document.querySelectorAll('.section').forEach((section) => {
         // Project Modal Functionality
         const modal = document.getElementById('projectModal');
         const previewButtons = document.querySelectorAll('.preview-btn');
+        
 
         previewButtons.forEach(button => {
             button.addEventListener('click', (e) => {
@@ -592,7 +599,8 @@ document.querySelectorAll('.section').forEach((section) => {
                 showProjectPreview(projectId);
             });
         });
-
+        
+        
         function showProjectPreview(projectId) {
             // Add your project preview content here
             const projectData = {
@@ -616,7 +624,7 @@ document.querySelectorAll('.section').forEach((section) => {
             document.getElementById('modalContent').innerHTML = projectData[projectId].content;
             modal.style.display = 'flex';
         }
-
+         
         // Close modal when clicking outside
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
@@ -665,54 +673,63 @@ document.querySelectorAll('.section').forEach((section) => {
                 observer.observe(circle);
             });
 
-            // Form handling
-            document.getElementById('contactForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(e.target);
-                const data = Object.fromEntries(formData.entries());
-                
-                try {
-                    // Replace with your actual form handling logic
-                    console.log('Form submitted:', data);
-                    alert('Message sent successfully!');
-                    e.target.reset();
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Failed to send message. Please try again.');
-                }
-            });
+           
+
 
             // Dark mode toggle with enhanced transitions
             const darkModeToggle = document.getElementById('dark-mode-toggle');
             const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-            
-            function setDarkMode(isDark) {
-                document.body.classList.toggle('dark-mode', isDark);
-                localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-                darkModeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-            }
-
-            // Initialize dark mode based on user preference
-            const savedDarkMode = localStorage.getItem('darkMode');
-            if (savedDarkMode) {
-                setDarkMode(savedDarkMode === 'enabled');
-            } else {
-                setDarkMode(prefersDarkScheme.matches);
-            }
-
-            darkModeToggle.addEventListener('click', () => {
-                setDarkMode(!document.body.classList.contains('dark-mode'));
-            });
-
-            // Update dark mode when system preference changes
-            prefersDarkScheme.addEventListener('change', (e) => {
-                setDarkMode(e.matches);
-            });
+           
         });   
 
      
+  // Enhanced form validation and submission
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Form validation
+      const formData = new FormData(e.target);
+      const formFields = Object.fromEntries(formData.entries());
+      
+      try {
+        // Basic validation
+        for (const [key, value] of Object.entries(formFields)) {
+          if (!value.trim()) {
+            throw new Error(`${key.charAt(0).toUpperCase() + key.slice(1)} is required`);
+          }
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formFields.email)) {
+          throw new Error('Please enter a valid email address');
+        }
 
-     
+        // Show loading state
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        // Simulate form submission (replace with actual API call)
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Success handling
+        contactForm.reset();
+        alert('Message sent successfully!');
+
+      } catch (error) {
+        // Error handling
+        alert(error.message || 'Failed to send message. Please try again.');
+      } finally {
+        // Reset button state
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      }
+    });
+  }
     </script>
 </body>
 </html>
