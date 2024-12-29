@@ -1,7 +1,4 @@
-/* Reset and Base Styles */
-
-   /* Enhanced CSS with modern features */
-   :root {
+:root {
     --primary-color: #6a11cb;
     --secondary-color: #2575fc;
     --text-color: #333;
@@ -9,20 +6,17 @@
     --card-bg: #ffffff;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --background-color: #f4f4f4;
-
-    /* Accessibility-friendly font sizes */
     --base-font-size: 16px;
     --line-height: 1.6;
 }
+
 body {
     font-size: var(--base-font-size);
     line-height: var(--line-height);
-    color: #333;
+    color: var(--text-color);
     background-color: var(--background-color);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-/* General Section Styling */
-
 
 h2 {
     text-align: center;
@@ -30,20 +24,21 @@ h2 {
     color: #b8a0ff;
 }
 
-/* Grid Layout */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-/* Skill Cards */
 .skill-card {
     background-color: #232323;
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+}
+.skill-card:hover {
+    transform: translateY(-5px);
 }
 /* Circular Progress Base */
 .skill-circle {
@@ -991,7 +986,6 @@ h2 {
 
 
 
-
 /* About Section Styles */
 .about-wrapper {
     max-width: 1200px;
@@ -1000,6 +994,10 @@ h2 {
     background: linear-gradient(120deg, #abb8d2, #2a5298);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
 }
 
 /* Header */
@@ -1013,6 +1011,17 @@ h2 {
     color: #ffffff;
     margin-bottom: 0.5rem;
     letter-spacing: 2px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #63ffa9;
+    margin: 10px auto 0;
+    border-radius: 4px;
 }
 
 .section-subtitle {
@@ -1024,59 +1033,50 @@ h2 {
 /* About Container */
 .about-container {
     display: flex;
-    flex-direction: row; /* Align items horizontally */
-    align-items: center; /* Vertically center the content */
-    justify-content: space-between; /* Push items to the edges */
-    gap: 2rem; /* Add space between the two sections */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
 .about-visual {
-    flex: 1; /* Occupy the left side */
-    text-align: center; /* Center content within this section */
+    flex: 1;
+    text-align: center;
 }
 
 .about-content {
-    flex: 1; /* Occupy the right side */
-    text-align: left; /* Align text to the left */
+    flex: 1;
+    text-align: left;
+    position: relative;
 }
 
-
+/* Profile Photo */
 .profile-photo {
-    width: 150px; /* Define a specific width */
-    height: 150px; /* Maintain aspect ratio */
-    border-radius: 50%; /* Make the image circular */
-    object-fit: cover; /* Prevent distortion */
-    border: 5px solid #ffffff; /* Add a border to distinguish it */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhance appearance */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.profile-frame {
-    position: relative; /* Ensure the container adapts correctly */
-    display: flex; /* Center image */
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
-}
-
 
 .profile-photo:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
-.profile-backdrop {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    right: -1rem;
-    bottom: -1rem;
-    background: #6c63ff;
-    border-radius: 16px;
-    z-index: 1;
-}
-
+/* Quick Stats */
 .quick-stats {
     background: #2d2d45;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
 }
 
 .stat-item {
@@ -1102,69 +1102,23 @@ h2 {
     font-weight: bold;
 }
 
-.bio-details p {
+.bio-details {
     color: #ffffff;
     margin-bottom: 1rem;
     line-height: 1.8;
     font-size: 1.1rem;
 }
 
-/* Expertise Grid */
-.expertise-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.expertise-card {
-    background: #7373b9;
+/* Expertise Summary */
+.expertise-summary {
+    background: #3e3e59;
     border-radius: 12px;
     padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.expertise-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-}
-
-.expertise-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #63ffa9;
-}
-
-.expertise-card h3 {
-    color: #ffffff;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.expertise-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.expertise-card li {
-    color: whitesmoke;
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.2rem;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.expertise-card li::before {
-    content: "▹";
-    color: #63ffa9;
-    position: absolute;
-    left: 0;
-}
-
-/* Current Focus */
 .current-focus {
     background: #3e3e59;
     border-radius: 12px;
@@ -1172,16 +1126,12 @@ h2 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.current-focus h3 {
-    color: #ffffff;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
+/* Focus Items */
 .focus-items {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
+    margin-top: 1rem;
 }
 
 .focus-tag {
@@ -1201,32 +1151,41 @@ h2 {
     color: #1f1f2e;
 }
 
+/* Animations */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .about-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 
-    .about-visual {
-        max-width: 300px;
-        margin: 0 auto;
-        position: relative;
+    .about-visual,
+    .about-content {
+        text-align: center;
     }
 
-    .expertise-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .profile-frame {
+        margin-bottom: 2rem;
     }
 }
 
 @media (max-width: 768px) {
-    .expertise-grid {
-        grid-template-columns: 1fr;
-    }
-
     .profile-frame {
         margin: 0 auto;
     }
 }
+
+
 
 
 
@@ -1294,15 +1253,16 @@ input:invalid, textarea:invalid {
 
 
 
-
+/* Certificate Section */
 .cert-carousel {
-    background: linear-gradient(120deg, #1e3c72 , #2a5298);
+    background: linear-gradient(120deg, #2a4c8b , #2a5298);
     padding: 4rem 1rem;
     color: #ffffff;
     position: relative;
     overflow: hidden;
     width: 70%; /* Reduced width */
    margin: 0 auto; /* Center horizontally */
+   border: 25px;
 }
 
 .cert-title {
@@ -1320,7 +1280,7 @@ input:invalid, textarea:invalid {
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Smoother animation */
     overflow: visible;
     will-change: transform;
 }
@@ -1329,11 +1289,13 @@ input:invalid, textarea:invalid {
     min-width: 100%;
     padding: 0 1rem;
     opacity: 0.5;
-    transition: all 0.3s ease;
+    transform: scale(0.9); /* Scale down inactive slides */
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .cert-slide.active {
     opacity: 1;
+    transform: scale(1); /* Make active slide full size */
 }
 
 .cert-card {
@@ -1366,7 +1328,7 @@ input:invalid, textarea:invalid {
 }
 
 .cert-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) rotate(1deg);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -1385,7 +1347,13 @@ input:invalid, textarea:invalid {
 }
 
 .cert-card:hover .cert-logo {
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-5px);
+    animation: bounce 0.5s;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0) scale(1.1);}
+    40% {transform: translateY(-10px) scale(1.1);}
+    60% {transform: translateY(-5px) scale(1.1);}
 }
 
 .cert-info {
@@ -1421,12 +1389,14 @@ input:invalid, textarea:invalid {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.7;
 }
 
 .carousel-button:hover {
     transform: translateY(-50%) scale(1);
     background:  #1e3c72;
     color: #ffffff;
+    opacity: 1;
 }
 
 .prev-button { left: 10px; }
@@ -1458,8 +1428,8 @@ input:invalid, textarea:invalid {
 .dot.active {
     background: #ffffff;
     border-color: #1e3c72;
+    transform: scale(1.2);
 }
-
 .progress-bar {
     position: absolute;
     bottom: 0;
