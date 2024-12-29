@@ -1,15 +1,17 @@
-        // Smooth scrolling and active link management
-        document.querySelectorAll('a.nav-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+// Smooth scrolling and active link management
+document.querySelectorAll('a.nav-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        // Smooth scroll to the target section
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
 
-                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-       
+        // Remove 'active' class from all nav links and add it to the clicked link
+        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
 
+// Intersection Observer for section visibility animation
 document.body.classList.add('transition');
 const observer = new IntersectionObserver(
     (entries) => {
@@ -28,23 +30,23 @@ document.querySelectorAll('.section').forEach((section) => {
     section.classList.add('hidden');
     observer.observe(section);
 });
- // Animate skill bars on scroll
- const observeSkills = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('.progress-fill').forEach(fill => {
-                        const width = fill.parentElement.previousElementSibling.lastElementChild.textContent;
-                        fill.style.width = width;
-                    });
-                }
+
+// Animate skill bars on scroll
+const observeSkills = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.progress-fill').forEach(fill => {
+                const width = fill.parentElement.previousElementSibling.lastElementChild.textContent;
+                fill.style.width = width;
             });
-        }, { threshold: 0.5 });
+        }
+    });
+}, { threshold: 0.5 });
 
-        document.querySelectorAll('.skill-card').forEach(card => {
-            observeSkills.observe(card);
-        });
+document.querySelectorAll('.skill-card').forEach(card => {
+    observeSkills.observe(card);
+});
 
-       
 // Error logging utility
 class ErrorLogger {
     static log(error, context = {}) {
@@ -90,7 +92,6 @@ class PortfolioInteractions {
         this.initSkillCircles();
     }
 
-    // Smooth scrolling and active link management
     initSmoothScroll() {
         document.querySelectorAll('a.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -105,7 +106,6 @@ class PortfolioInteractions {
         });
     }
 
-    // Sticky navigation on scroll
     initStickyNavigation() {
         const nav = document.querySelector('.nav');
         window.addEventListener('scroll', () => {
@@ -113,7 +113,6 @@ class PortfolioInteractions {
         });
     }
 
-    // Section visibility animation on scroll
     initSectionObservers() {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -130,7 +129,6 @@ class PortfolioInteractions {
         });
     }
 
-    // Lazy loading for images
     initLazyLoading() {
         const lazyImages = document.querySelectorAll('.lazy-image');
         const imageObserver = new IntersectionObserver((entries) => {
@@ -150,7 +148,6 @@ class PortfolioInteractions {
         lazyImages.forEach(img => imageObserver.observe(img));
     }
 
-    // Project modal functionality
     initProjectModal() {
         const modal = document.getElementById('projectModal');
         const closeBtn = modal.querySelector('.close-btn');
@@ -213,7 +210,6 @@ class PortfolioInteractions {
         }
     }
 
-    // Contact form submission handling
     initContactForm() {
         const contactForm = document.getElementById('contactForm');
         const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -222,7 +218,6 @@ class PortfolioInteractions {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Disable form submission while processing
             submitButton.disabled = true;
             spinner.style.display = 'inline-block';
 
@@ -246,7 +241,6 @@ class PortfolioInteractions {
 
                 if (!isValid) return;
 
-                // Simulate form submission (replace with actual fetch)
                 const formData = Object.fromEntries(new FormData(contactForm));
                 await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -263,100 +257,79 @@ class PortfolioInteractions {
         });
     }
 
-   // Skill circle animations with additional enhancements
-initSkillCircles() {
-    document.querySelectorAll('.skill-circle').forEach(circle => {
-        const progress = parseFloat(circle.dataset.progress); // Extract progress percentage
-        const radius = 54;
-        const circumference = 2 * Math.PI * radius;
-        const progressCircle = circle.querySelector('.progress');
-        const skillLabel = circle.querySelector('.skill-label');
+    initSkillCircles() {
+        document.querySelectorAll('.skill-circle').forEach(circle => {
+            const progress = parseFloat(circle.dataset.progress);
+            const radius = 54;
+            const circumference = 2 * Math.PI * radius;
+            const progressCircle = circle.querySelector('.progress');
+            const skillLabel = circle.querySelector('.skill-label');
 
-        // Set initial circle properties
-        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-        progressCircle.style.strokeDashoffset = circumference;
+            progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressCircle.style.strokeDashoffset = circumference;
 
-        // Set custom properties for smoother animation
-        progressCircle.style.setProperty('--progress', progress);
-        progressCircle.style.setProperty('--circumference', circumference);
+            progressCircle.style.setProperty('--progress', progress);
+            progressCircle.style.setProperty('--circumference', circumference);
 
-        // Create an IntersectionObserver to trigger animations when visible
-        const observer = new IntersectionObserver(
-            entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Animate progress circle
-                        const offset = circumference - (progress / 100 * circumference);
-                        progressCircle.style.strokeDashoffset = offset;
-                        progressCircle.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+            const observer = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const offset = circumference - (progress / 100 * circumference);
+                            progressCircle.style.strokeDashoffset = offset;
+                            progressCircle.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
 
-                        // Animate skill label
-                        if (skillLabel) {
-                            skillLabel.style.transform = 'translateX(-50%) translateY(0)';
-                            skillLabel.style.opacity = '1';
+                            if (skillLabel) {
+                                skillLabel.style.transform = 'translateX(-50%) translateY(0)';
+                                skillLabel.style.opacity = '1';
+                            }
+
+                            this.animateCountUp(circle, progress);
                         }
+                    });
+                },
+                { threshold: 0.5 }
+            );
 
-                        // Trigger optional count-up animation for percentage
-                        this.animateCountUp(circle, progress);
-                    }
-                });
-            },
-            {
-                threshold: 0.5, // Trigger when 50% visible
-                rootMargin: '0px 0px -50px 0px' // Adjust visibility trigger point
+            observer.observe(circle);
+        });
+    }
+
+    animateCountUp(circle, targetProgress) {
+        const percentageElement = document.createElement('span');
+        percentageElement.classList.add('skill-percentage');
+        percentageElement.style.position = 'absolute';
+        percentageElement.style.top = '-25px';
+        percentageElement.style.left = '50%';
+        percentageElement.style.transform = 'translateX(-50%)';
+        percentageElement.style.color = '#1e3c72';
+        percentageElement.style.fontWeight = 'bold';
+
+        circle.appendChild(percentageElement);
+
+        let progress = 0;
+        const duration = 1500;
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const percentage = Math.min(elapsed / duration, 1);
+
+            progress = Math.floor(percentage * targetProgress);
+            percentageElement.textContent = `${progress}%`;
+
+            if (percentage < 1) {
+                requestAnimationFrame(update);
             }
-        );
+        };
 
-        // Start observing the skill circle
-        observer.observe(circle);
-    });
+        requestAnimationFrame(update);
+    }
 }
 
-// Optional count-up animation for skill percentage
-animateCountUp(circle, targetProgress) {
-    const percentageElement = document.createElement('span');
-    percentageElement.classList.add('skill-percentage');
-    percentageElement.style.position = 'absolute';
-    percentageElement.style.top = '-25px';
-    percentageElement.style.left = '50%';
-    percentageElement.style.transform = 'translateX(-50%)';
-    percentageElement.style.color = '#1e3c72';
-    percentageElement.style.fontWeight = 'bold';
-
-    circle.appendChild(percentageElement);
-
-    let progress = 0;
-    const duration = 1500; // Same duration as circle animation
-    const startTime = performance.now();
-
-    const update = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const percentage = Math.min(elapsed / duration, 1);
-
-        progress = Math.floor(percentage * targetProgress);
-        percentageElement.textContent = `${progress}%`;
-
-        if (percentage < 1) {
-            requestAnimationFrame(update);
-        }
-    };
-
-    requestAnimationFrame(update);
-}
-
-}
-
-
-// Initialize portfolio interactions when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     new PortfolioInteractions();
 });
-
-
-
-
-
-
 
 class CertificationCarousel {
     constructor() {
@@ -366,12 +339,10 @@ class CertificationCarousel {
         this.touchEndX = 0;
         this.isAnimating = false;
 
-        // Cache DOM elements
         this.track = document.getElementById('carouselTrack');
         this.dotsContainer = document.getElementById('carouselDots');
         this.progressBar = document.getElementById('progress');
         
-        // Initialize
         this.initializeCertifications();
         this.setupEventListeners();
         this.startAutoPlay();
@@ -379,94 +350,91 @@ class CertificationCarousel {
     }
 
     async fetchCertifications() {
-        // Simulate API call - replace with actual API endpoint
         return [
-                {
-                    title: "Virtual Assistant",
-                    platform: "ALX Africa",
-                    date: "Sep 2024",
-                    logo: "media/alx-logo.png",
-                    link: ""
-                },
-                {
-                    title: "IBM Cyber Security Fundamentals",
-                    platform: "IBM",
-                    date: "Nov 2024",
-                    logo: "media/ibm-logo.jpeg",
-                    link: "https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv"
-                },
-                {
-                    title: "Introduction to Exploits",
-                    platform: "Udemy",
-                    date: "February 2024",
-                    logo: "media/udemy-logo.jpeg",
-                    link: "https://drive.google.com/file/d/151bCSGRgKV_H3iOpW0AznjYVf-81KTgt/view?usp=drive_link"
-                },
-                {
-                    title: "Python for Everybody",
-                    platform: "Try Kibo School",
-                    date: "March 2024",
-                    logo: "media/python-logo.jpeg",
-                    link: ""
-                },
-                {
-                    title: "Artificial Intelligence",
-                    platform: "IBM SkillBuild",
-                    date: "June 2024",
-                    logo: "media/ibm-logo.jpeg",
-                    link: "https://www.credly.com/earner/earned/badge/23be8694-6541-457f-a02f-28e91358bfea"
-                },
-                {
-                    title: "Our Future with AI",
-                    platform: "ALX Africa",
-                    date: "June 2024",
-                    logo: "media/alx-logo.png",
-                    link: "https://drive.google.com/file/d/1HC1PRgQoEXt5lsJBq8oPxPj5dThwOMhe/view?usp=drive_link"
-                },
-                {
-                    title: "Python Basics",
-                    platform: "Hackerrank",
-                    date: "March 2024",
-                    logo: "media/python-logo.jpeg",
-                    link: "https://drive.google.com/file/d/1IWAJQoSBuqPqQG0RZYZERIjor3pSzk8s/view?usp=drive_link"
-                },
-                {
-                    title: "Cisco CyberShujaa Ethical Hacking",
-                    platform: "Cisco",
-                    date: "Dec 2024",
-                    logo: "media/cyber-shujaa.jpeg",
-                    link: "https://www.credly.com/badges/ad9cca44-6a8d-4658-8dac-6d800b0e3170/public_url"
-                },
-                {
-                    title: "Web Development, Software Engineering, Database Administration & Python Programming",
-                    platform: "Power Learn Project",
-                    date: "Dec 2024",
-                    logo: "media/power-learn.jpeg",
-                    link: "https://drive.google.com/file/d/1LF84BkzE0_PFTrdzFbWgLy_ZuOv7G2NT/view?usp=drive_link"
-                },
-                {
-                    title: "Information Technology Fundamentals",
-                    platform: "IBM SkillBuild",
-                    date: "Dec 2024",
-                    logo: "media/ibm-logo.jpeg",
-                    link: "https://www.credly.com/badges/3f0e2914-f90d-461a-bb01-e80b03b3499d/public_url"
-                },
-                {
-                    title: "Emerging Tech",
-                    platform: "IBM SkillBuild",
-                    date: "Dec 2024",
-                    logo: "media/ibm-logo.jpeg",
-                    link: "https://www.credly.com/badges/44131d76-1d84-44a1-b3b4-7a5dd009358b/public_url"
-                },
-                {
-                    title: "Advent of Cyber 2024",
-                    platform: "TryHackMe",
-                    date: "Dec 2024",
-                    logo: "media/ibm-logo.jpeg",
-                    link: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-SKFNHTF5K6.pdf"
-                }
-            
-            
+            {
+                title: "Virtual Assistant",
+                platform: "ALX Africa",
+                date: "Sep 2024",
+                logo: "media/alx-logo.png",
+                link: ""
+            },
+            {
+                title: "IBM Cyber Security Fundamentals",
+                platform: "IBM",
+                date: "Nov 2024",
+                logo: "media/ibm-logo.jpeg",
+                link: "https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv"
+            },
+            {
+                title: "Introduction to Exploits",
+                platform: "Udemy",
+                date: "February 2024",
+                logo: "media/udemy-logo.jpeg",
+                link: "https://drive.google.com/file/d/151bCSGRgKV_H3iOpW0AznjYVf-81KTgt/view?usp=drive_link"
+            },
+            {
+                title: "Python for Everybody",
+                platform: "Try Kibo School",
+                date: "March 2024",
+                logo: "media/python-logo.jpeg",
+                link: ""
+            },
+            {
+                title: "Artificial Intelligence",
+                platform: "IBM SkillBuild",
+                date: "June 2024",
+                logo: "media/ibm-logo.jpeg",
+                link: "https://www.credly.com/earner/earned/badge/23be8694-6541-457f-a02f-28e91358bfea"
+            },
+            {
+                title: "Our Future with AI",
+                platform: "ALX Africa",
+                date: "June 2024",
+                logo: "media/alx-logo.png",
+                link: "https://drive.google.com/file/d/1HC1PRgQoEXt5lsJBq8oPxPj5dThwOMhe/view?usp=drive_link"
+            },
+            {
+                title: "Python Basics",
+                platform: "Hackerrank",
+                date: "March 2024",
+                logo: "media/python-logo.jpeg",
+                link: "https://drive.google.com/file/d/1IWAJQoSBuqPqQG0RZYZERIjor3pSzk8s/view?usp=drive_link"
+            },
+            {
+                title: "Cisco CyberShujaa Ethical Hacking",
+                platform: "Cisco",
+                date: "Dec 2024",
+                logo: "media/cyber-shujaa.jpeg",
+                link: "https://www.credly.com/badges/ad9cca44-6a8d-4658-8dac-6d800b0e3170/public_url"
+            },
+            {
+                title: "Web Development, Software Engineering, Database Administration & Python Programming",
+                platform: "Power Learn Project",
+                date: "Dec 2024",
+                logo: "media/power-learn.jpeg",
+                link: "https://drive.google.com/file/d/1LF84BkzE0_PFTrdzFbWgLy_ZuOv7G2NT/view?usp=drive_link"
+            },
+            {
+                title: "Information Technology Fundamentals",
+                platform: "IBM SkillBuild",
+                date: "Dec 2024",
+                logo: "media/ibm-logo.jpeg",
+                link: "https://www.credly.com/badges/3f0e2914-f90d-461a-bb01-e80b03b3499d/public_url"
+            },
+            {
+                title: "Emerging Tech",
+                platform: "IBM SkillBuild",
+                date: "Dec 2024",
+                logo: "media/ibm-logo.jpeg",
+                link: "https://www.credly.com/badges/44131d76-1d84-44a1-b3b4-7a5dd009358b/public_url"
+            },
+            {
+                title: "Advent of Cyber 2024",
+                platform: "TryHackMe",
+                date: "Dec 2024",
+                logo: "media/tryhackme.jpeg",
+                link: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-SKFNHTF5K6.pdf"
+            }
         ];
     }
 
@@ -545,9 +513,20 @@ class CertificationCarousel {
     }
 
     updateCarousel() {
-        if (this.isAnimating) return;
-
+        if (this.isAnimating) {
+            requestAnimationFrame(() => {
+                this.updateCarousel(); // Try again next frame if animating
+            });
+            return;
+        }
+        this.isAnimating = true;
+        this.track.style.transition = 'transform 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
         this.track.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+    
+        // Let the transition complete before allowing another slide change
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 500);
         
         // Update slides
         document.querySelectorAll('.cert-slide').forEach((slide, index) => {
@@ -643,4 +622,20 @@ class CertificationCarousel {
 // Initialize carousel
 document.addEventListener('DOMContentLoaded', () => {
     new CertificationCarousel();
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const quickStats = document.querySelector('.quick-stats');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                quickStats.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    observer.observe(quickStats);
 });
