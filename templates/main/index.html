@@ -760,10 +760,18 @@
     <h2 class="cert-title">Certifications</h2>
     <div class="carousel-container" id="carousel">
         <div class="carousel-track" id="carouselTrack" aria-live="polite">
-            {% for cert in certifications %}
-            <div class="cert-slide {% if forloop.first %}active{% endif %}" role="tabpanel" aria-label="Slide {{ forloop.counter }} of {{ certifications|length }}">
-                <div class="cert-card {% if not cert.link %}no-link{% endif %}" data-link="{{ cert.link|default:'' }}" role="button" tabindex="0">
-                    <img src="{% static cert.logo %}" alt="{{ cert.platform }} logo" class="cert-logo" loading="lazy">
+            {% for cert in certificates %}
+            <div class="cert-slide {% if forloop.first %}active{% endif %}" role="tabpanel" aria-label="Slide {{ forloop.counter }} of {{ certificates|length }}">
+                <div class="cert-card {% if not cert.link %}no-link{% endif %}" data-link="{{ cert.link }}" role="button" tabindex="0">
+                    {% if cert.logo %}
+                        {% if 'main/media/' in cert.logo %}
+                            <img src="{% static cert.logo %}" alt="{{ cert.platform }} logo" class="cert-logo" loading="lazy">
+                        {% else %}
+                            <img src="{% static 'main/media/'|add:cert.logo %}" alt="{{ cert.platform }} logo" class="cert-logo" loading="lazy">
+                        {% endif %}
+                    {% else %}
+                        <img src="{% static 'main/media/certificate-default.png' %}" alt="{{ cert.platform }} logo" class="cert-logo" loading="lazy">
+                    {% endif %}
                     <div class="cert-info">
                         <h3>{{ cert.title }}</h3>
                         <p>{{ cert.platform }}</p>
@@ -773,36 +781,9 @@
                 </div>
             </div>
             {% empty %}
-            <!-- Default certifications if none in database -->
-            <div class="cert-slide active" role="tabpanel" aria-label="Slide 1 of 12">
-                <div class="cert-card" data-link="" role="button" tabindex="0">
-                    <img src="{% static 'main/media/alx-logo.png' %}" alt="ALX Africa logo" class="cert-logo" loading="lazy">
-                    <div class="cert-info">
-                        <h3>Virtual Assistant</h3>
-                        <p>ALX Africa</p>
-                        <p>Sep 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="cert-slide" role="tabpanel" aria-label="Slide 2 of 12">
-                <div class="cert-card" data-link="https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv" role="button" tabindex="0">
-                    <img src="{% static 'main/media/ibm-logo.jpeg' %}" alt="IBM logo" class="cert-logo" loading="lazy">
-                    <div class="cert-info">
-                        <h3>IBM Cyber Security Fundamentals</h3>
-                        <p>IBM</p>
-                        <p>Nov 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="cert-slide" role="tabpanel" aria-label="Slide 3 of 12">
-                <div class="cert-card" data-link="https://drive.google.com/file/d/151bCSGRgKV_H3iOpW0AznjYVf-81KTgt/view?usp=drive_link" role="button" tabindex="0">
-                    <img src="{% static 'main/media/udemy-logo.jpeg' %}" alt="Udemy logo" class="cert-logo" loading="lazy">
-                    <div class="cert-info">
-                        <h3>Introduction to Exploits</h3>
-                        <p>Udemy</p>
-                        <p>February 2024</p>
-                    </div>
-                </div>
+            <!-- If no certificates in database, load from JavaScript -->
+            <div class="cert-slide" role="tabpanel">
+                <p class="no-certs-message">Loading certificates...</p>
             </div>
             {% endfor %}
         </div>
