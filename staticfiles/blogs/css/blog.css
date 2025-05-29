@@ -1,0 +1,572 @@
+/* Blog CSS styles */
+
+/* General blog layout */
+.blog-section {
+    padding: 80px 0;
+}
+
+.blog-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.blog-main {
+    flex: 3;
+}
+
+.blog-sidebar {
+    flex: 1;
+}
+
+/* Blog post card styling */
+.blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blog-post {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.post-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-post:hover .post-image img {
+    transform: scale(1.05);
+}
+
+.post-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: var(--heading-color);
+}
+
+.post-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-title a:hover {
+    color: var(--primary-color);
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.post-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.post-meta i {
+    margin-right: 5px;
+}
+
+.post-meta a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-meta a:hover {
+    color: var(--primary-color);
+}
+
+.post-excerpt {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    align-self: flex-start;
+}
+
+.read-more:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Sidebar styling */
+.sidebar-widget {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.widget-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: var(--heading-color);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.categories-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.categories-list li {
+    margin-bottom: 10px;
+}
+
+.categories-list a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.categories-list a:hover,
+.categories-list a.active {
+    color: var(--primary-color);
+}
+
+.categories-list a:before {
+    content: "❯";
+    margin-right: 10px;
+    font-size: 0.8rem;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 5px;
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.pagination-link:hover {
+    background-color: var(--border-color);
+}
+
+.pagination-link.current {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Blog detail page */
+.blog-detail-section {
+    padding: 80px 0;
+}
+
+.blog-post-detail {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.post-header {
+    padding: 30px 30px 0;
+}
+
+.post-featured-image {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.post-featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blog-post-detail .post-content {
+    padding: 0 30px 30px;
+}
+
+.blog-post-detail .post-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.blog-post-detail .post-content p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.blog-post-detail .post-content h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+}
+
+.blog-post-detail .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.back-to-blog:hover {
+    background-color: var(--primary-dark);
+}
+
+.back-to-blog i {
+    margin-right: 8px;
+}
+
+/* Comments section */
+.comments-section {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.comments-title {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--heading-color);
+    font-size: 1.5rem;
+}
+
+.comment-form-container {
+    margin-bottom: 40px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.submit-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    align-self: flex-start;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.comments-list {
+    margin-top: 30px;
+}
+
+.comment {
+    padding: 20px;
+    background: var(--body-bg);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.comment-content {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.no-comments {
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* Related posts */
+.related-posts {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.related-posts-title {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--heading-color);
+    font-size: 1.5rem;
+}
+
+.related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.related-post {
+    background: var(--body-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.related-post:hover {
+    transform: translateY(-5px);
+}
+
+.related-post-image {
+    height: 150px;
+    overflow: hidden;
+}
+
+.related-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.related-post:hover .related-post-image img {
+    transform: scale(1.05);
+}
+
+.related-post-title {
+    padding: 15px;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.related-post-title a {
+    color: var(--heading-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.related-post-title a:hover {
+    color: var(--primary-color);
+}
+
+.related-post-meta {
+    padding: 0 15px 15px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Category title */
+.category-title {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--heading-color);
+}
+
+.no-posts {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode adjustments for code blocks in blog posts */
+.blog-post-detail pre {
+    background: var(--code-bg);
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.blog-post-detail code {
+    font-family: 'Courier New', monospace;
+    color: var(--code-color);
+}
+
+/* Responsive styling */
+@media (max-width: 992px) {
+    .blog-container {
+        flex-direction: column;
+    }
+    
+    .blog-main {
+        order: 2;
+    }
+    
+    .blog-sidebar {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-section,
+    .blog-detail-section {
+        padding: 40px 0;
+    }
+    
+    .blog-post-detail .post-title {
+        font-size: 1.6rem;
+    }
+    
+    .related-posts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .post-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* CSS Variables - These will automatically work with your theme toggle */
+:root {
+    /* Default light theme variables will be integrated with your existing theme */
+    --primary-color: #3498db;
+    --primary-dark: #2980b9;
+    --heading-color: #333;
+    --text-color: #555;
+    --text-light: #777;
+    --border-color: #eaeaea;
+    --card-bg: #fff;
+    --body-bg: #f8f9fa;
+    --input-bg: #fff;
+    --code-bg: #f5f5f5;
+    --code-color: #e83e8c;
+}
+
+/* Dark theme variables - these will be handled by your theme toggle */
+[data-theme="dark"] {
+    --primary-color: #3498db;
+    --primary-dark: #2980b9;
+    --heading-color: #e4e6eb;
+    --text-color: #b0b3b8;
+    --text-light: #8a8d91;
+    --border-color: #3a3b3c;
+    --card-bg: #242526;
+    --body-bg: #18191a;
+    --input-bg: #3a3b3c;
+    --code-bg: #2d2d2d;
+    --code-color: #ff79c6;
+}
