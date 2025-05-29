@@ -1,0 +1,898 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_js %}
+<script src="{% static 'main/js/contact-form.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section id="about" class="section about-section">
+    <!-- Animated background shapes -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    
+    <div class="about-wrapper">
+        <header class="about-header">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Cybersecurity Professional & Full Stack Developer</p>
+        </header>
+        <div class="about-container">
+            <div class="about-visual">
+                <div class="profile-frame">
+                    <img src="{% static 'main/media/Oranjo-Laiv.png' %}" alt="Benard Karanja" class="profile-photo">
+                </div>
+                <p class="bio-intro">
+                    I am a cybersecurity specialist and full-stack developer passionate about secure digital solutions.
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="expertise-summary">
+                    <h3>Key Expertise</h3>
+                    <p>
+                        My professional focus spans offensive and defensive cybersecurity, secure software development, and modern system architecture. With a background in ethical hacking and red teaming, I have honed my skills in identifying and mitigating vulnerabilities across various environments.
+                    </p>
+                </div>
+                
+                <div class="current-focus">
+                    <h3>Current Focus</h3>
+                    <p>
+                        I am currently exploring advanced penetration testing techniques, AI-driven security applications, and implementing zero trust architecture principles in modern cloud environments.
+                    </p>
+                    <div class="focus-items">
+                        <span class="focus-tag">Penetration Testing</span>
+                        <span class="focus-tag">AI-Driven Security</span>
+                        <span class="focus-tag">Zero Trust Architecture</span>
+                        <span class="focus-tag">Cloud Security</span>
+                    </div>
+                </div>
+                
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">🎓</span>
+                        <span class="stat-label">B.Sc. in Computer Security & Forensics</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🏛️</span>
+                        <span class="stat-label">Graduate of JOOUST University</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🔒</span>
+                        <span class="stat-label">Certified Ethical Hacker</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🔒</span>
+                        <span class="stat-label">Certified Full Stack Web Developer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="section skills-section">
+    <div class="skills-container">
+        <header class="skills-header">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Expertise in security, development, and data management</p>
+        </header>
+        
+        <div class="skills-carousel">
+            <div class="skills-track" id="skillsTrack">
+                <!-- Cybersecurity Card -->
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-shield-alt pulse"></i>
+                        </div>
+                        <div class="skill-card-content">
+                            <h3>Offensive Security Expertise</h3>
+                            <p>Specialized in ethical hacking, penetration testing, and securing digital infrastructures against evolving threats.</p>
+                            
+                            <div class="skill-proficiency">
+                                <div class="proficiency-label">Overall Proficiency</div>
+                                <div class="proficiency-bar">
+                                    <div class="proficiency-fill" style="width: 92%;">
+                                        <span>92%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-details">
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-user-secret"></i>
+                                        <span>Ethical Hacking</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 95%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-flag"></i>
+                                        <span>Red Teaming & OPSEC</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-bug"></i>
+                                        <span>Vulnerability Assessment</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 88%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-tools">
+                                    <div class="tools-grid">
+                                        <div class="tool-badge">Metasploit</div>
+                                        <div class="tool-badge">Burp Suite</div>
+                                        <div class="tool-badge">Nmap</div>
+                                        <div class="tool-badge">Wireshark</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Development Card -->
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-code pulse"></i>
+                        </div>
+                        <div class="skill-card-content">
+                            <h3>Full Stack Development</h3>
+                            <p>Experienced in building responsive, secure, and scalable web applications with modern frameworks and technologies.</p>
+                            
+                            <div class="skill-proficiency">
+                                <div class="proficiency-label">Overall Proficiency</div>
+                                <div class="proficiency-bar">
+                                    <div class="proficiency-fill" style="width: 88%;">
+                                        <span>88%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-details">
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fab fa-python"></i>
+                                        <span>Python</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 92%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fab fa-js"></i>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>HTML/CSS</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-tools">
+                                    <div class="tools-grid">
+                                        <div class="tool-badge">Django</div>
+                                        <div class="tool-badge">Flask</div>
+                                        <div class="tool-badge">Node.js</div>
+                                        <div class="tool-badge">React</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Database Card -->
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-database pulse"></i>
+                        </div>
+                        <div class="skill-card-content">
+                            <h3>Database Management</h3>
+                            <p>Expert in designing, optimizing, and securing database systems for high-performance applications.</p>
+                            
+                            <div class="skill-proficiency">
+                                <div class="proficiency-label">Overall Proficiency</div>
+                                <div class="proficiency-bar">
+                                    <div class="proficiency-fill" style="width: 85%;">
+                                        <span>85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-details">
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-table"></i>
+                                        <span>SQL</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 88%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-server"></i>
+                                        <span>MySQL</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-database"></i>
+                                        <span>PostgreSQL</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-tools">
+                                    <div class="tools-grid">
+                                        <div class="tool-badge">ORMs</div>
+                                        <div class="tool-badge">Schema Design</div>
+                                        <div class="tool-badge">Query Optimization</div>
+                                        <div class="tool-badge">Indexing</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools Card -->
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-tools pulse"></i>
+                        </div>
+                        <div class="skill-card-content">
+                            <h3>Tools & Platforms</h3>
+                            <p>Proficient with a wide range of development tools, platforms, and methodologies for optimal workflow.</p>
+                            
+                            <div class="skill-proficiency">
+                                <div class="proficiency-label">Overall Proficiency</div>
+                                <div class="proficiency-bar">
+                                    <div class="proficiency-fill" style="width: 90%;">
+                                        <span>90%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-details">
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fab fa-linux"></i>
+                                        <span>Linux/Unix</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 95%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fab fa-git-alt"></i>
+                                        <span>Git/GitHub</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 92%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <i class="fas fa-cloud"></i>
+                                        <span>Cloud Platforms</span>
+                                    </div>
+                                    <div class="skill-meter">
+                                        <div class="skill-level" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-tools">
+                                    <div class="tools-grid">
+                                        <div class="tool-badge">VS Code</div>
+                                        <div class="tool-badge">Kali Linux</div>
+                                        <div class="tool-badge">TryHackMe</div>
+                                        <div class="tool-badge">AWS</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation arrows for the carousel -->
+            <button class="carousel-nav skills-prev" id="prevSkill" aria-label="Previous skill">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-nav skills-next" id="nextSkill" aria-label="Next skill">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Skills navigation indicators -->
+            <div class="skills-indicators" id="skillsIndicators">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="section" aria-labelledby="projects-title">
+    <div class="section-header">
+        <h2 id="projects-title">Featured Projects</h2>
+        <p class="section-subtitle">A collection of my most impactful work</p>
+        
+        <div class="project-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+            <button class="filter-btn" data-filter="desktop">Desktop Apps</button>
+        </div>
+    </div>
+
+    <!-- Project Carousel -->
+    <div class="projects-carousel">
+        <div class="carousel-container">
+            <div class="project-carousel-track" id="projectTrack">
+                <!-- Project 1: Campus Interaction -->
+                <article class="project-slide" data-category="web">
+                    <div class="project-card full-width">
+                        <div class="project-header">
+                            <img src="{% static 'main/media/Screenshot From 2024-11-24 08-44-14.png' %}" alt="Campus Interaction Preview" class="project-image lazy-image" data-src="{% static 'main/media/Screenshot From 2024-11-24 08-44-14.png' %}">
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-main">
+                                <h3>Campus Interaction Platform</h3>
+                                <div class="project-tags">
+                                    <span class="tag">Featured</span>
+                                    <span class="tag">Full Stack</span>
+                                </div>
+                                
+                                <div class="project-description">
+                                    <p>A comprehensive campus community platform that revolutionizes student and faculty interaction. Built with scalability and user experience in mind.</p>
+                                    
+                                    <div class="project-highlights">
+                                        <div class="highlight">
+                                            <span class="highlight-icon">📈</span>
+                                            <span>1000+ Active Users</span>
+                                        </div>
+                                        <div class="highlight">
+                                            <span class="highlight-icon">⭐</span>
+                                            <span>4.8/5 User Rating</span>
+                                        </div>
+                                    </div>
+        
+                                    <div class="key-features">
+                                        <h4>Key Features</h4>
+                                        <ul>
+                                            <li>Real-time discussion forums with instant notifications</li>
+                                            <li>Event management system with calendar integration</li>
+                                            <li>Resource sharing with advanced search capabilities</li>
+                                            <li>Role-based access control system</li>
+                                        </ul>
+                                    </div>
+                                </div>
+        
+                                <div class="project-tech-stack">
+                                    <h4>Technologies Used</h4>
+                                    <div class="tech-badges">
+                                        <span class="tech-badge">HTML5</span>
+                                        <span class="tech-badge">CSS3</span>
+                                        <span class="tech-badge">JavaScript</span>
+                                        <span class="tech-badge">PHP</span>
+                                        <span class="tech-badge">MySQL</span>
+                                        <span class="tech-badge">REST API</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="preview-btn" data-project="campus-interaction">
+                                        <span class="icon">👁️</span> View Details
+                                    </a>
+                                    <a href="https://github.com/benard00118/Campus_Interaction" target="_blank" class="github-btn">
+                                        <span class="icon">📂</span> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+
+                <!-- Project 2: Easy Letters -->
+                <article class="project-slide" data-category="web">
+                    <div class="project-card full-width">
+                        <div class="project-header">
+                            <img src="{% static 'main/media/easy-letter.png' %}" alt="Easy Letters Preview" class="project-image lazy-image" data-src="{% static 'main/media/easy-letter.png' %}">
+                        </div>
+                <div class="project-content">
+                    <div class="project-main">
+                        <h3>Easy Letters</h3>
+                        <div class="project-tags">
+                            <span class="tag">Featured</span>
+                            <span class="tag">SaaS</span>
+                            <span class="tag">Full Stack</span>
+                        </div>
+                        
+                        <div class="project-description">
+                            <p>A user-friendly web application that enables organizations to generate personalized letters from Word templates using data from Excel files. Designed for non-technical users with powerful AI enhancements.</p>
+                            
+                            <div class="project-highlights">
+                                <div class="highlight">
+                                    <span class="highlight-icon">🤖</span>
+                                    <span>AI-Enhanced</span>
+                                </div>
+                                <div class="highlight">
+                                    <span class="highlight-icon">🌿</span>
+                                    <span>Sustainability Focus</span>
+                                </div>
+                            </div>
+    
+                            <div class="key-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>User-friendly template management with version control</li>
+                                    <li>Batch processing with Excel data integration</li>
+                                    <li>AI grammar checking and content suggestions</li>
+                                    <li>Multi-channel delivery and digital signatures</li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <div class="project-tech-stack">
+                            <h4>Technologies Used</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Celery</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Docker</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="#" class="preview-btn" data-project="easy-letters">
+                                <span class="icon">👁️</span> View Details
+                            </a>
+                            <a href="https://easy-letters-production.up.railway.app/" target="_blank" class="github-btn">
+                                <span class="icon">🌐</span> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Project 3: University Research Portal -->
+        <article class="project-slide" data-category="web">
+            <div class="project-card full-width">
+                <div class="project-header">
+                    <img src="{% static 'main/media/university-research.png' %}" alt="University Research Portal Preview" class="project-image lazy-image" data-src="{% static 'main/media/university-research.png' %}">
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-main">
+                        <h3>University Research Portal</h3>
+                        <div class="project-tags">
+                            <span class="tag">Team Project</span>
+                            <span class="tag">Full Stack</span>
+                            <span class="tag">GIS</span>
+                        </div>
+                        
+                        <div class="project-description">
+                            <p>A robust web platform built to support and enhance academic research workflows. Streamlines dataset management, field data collection, and geospatial analysis for researchers.</p>
+                            
+                            <div class="project-highlights">
+                                <div class="highlight">
+                                    <span class="highlight-icon">🔬</span>
+                                    <span>Research Enablement</span>
+                                </div>
+                                <div class="highlight">
+                                    <span class="highlight-icon">🗺️</span>
+                                    <span>Geospatial Analysis</span>
+                                </div>
+                            </div>
+    
+                            <div class="key-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Data repository with version control and analytics</li>
+                                    <li>Real-time field data collection with automated alerting</li>
+                                    <li>Geographical visualization with interactive maps</li>
+                                    <li>Role-based access control system</li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <div class="project-tech-stack">
+                            <h4>Technologies Used</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">GeoDjango</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">PostGIS</span>
+                                <span class="tech-badge">Leaflet.js</span>
+                                <span class="tech-badge">WebSockets</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="#" class="preview-btn" data-project="university-research">
+                                <span class="icon">👁️</span> View Details
+                            </a>
+                            <a href="https://github.com/n-cognto/university-research-portal" target="_blank" class="github-btn">
+                                <span class="icon">📂</span> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+                
+                
+                <!-- Project 4: Expense Tracker -->
+                <article class="project-slide" data-category="desktop">
+                    <div class="project-card full-width">
+                        <div class="project-header">
+                            <img src="{% static 'main/media/Screenshot From 2024-11-24 08-15-12.png' %}" alt="Expense Tracker Preview" class="project-image lazy-image" data-src="{% static 'main/media/Screenshot From 2024-11-24 08-15-12.png' %}">
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-main">
+                                <h3>Smart Expense Tracker</h3>
+                                <div class="project-tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Desktop App</span>
+                                </div>
+                                
+                                <div class="project-description">
+                                    <p>An intuitive and powerful expense tracking application that helps users manage their finances effectively. Features data visualization and budget forecasting capabilities.</p>
+                                    
+                                    <div class="project-highlights">
+                                        <div class="highlight">
+                                            <span class="highlight-icon">⬇️</span>
+                                            <span>500+ Downloads</span>
+                                        </div>
+                                        <div class="highlight">
+                                            <span class="highlight-icon">⭐</span>
+                                            <span>4.6/5 User Rating</span>
+                                        </div>
+                                    </div>
+            
+                                    <div class="key-features">
+                                        <h4>Key Features</h4>
+                                        <ul>
+                                            <li>Interactive spending analytics dashboard</li>
+                                            <li>Monthly budget planning tools</li>
+                                            <li>Export reports in multiple formats</li>
+                                            <li>Secure data encryption</li>
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                                <div class="project-tech-stack">
+                                    <h4>Technologies Used</h4>
+                                    <div class="tech-badges">
+                                        <span class="tech-badge">Python</span>
+                                        <span class="tech-badge">SQLite</span>
+                                        <span class="tech-badge">Tkinter</span>
+                                        <span class="tech-badge">Pandas</span>
+                                        <span class="tech-badge">Matplotlib</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="preview-btn" data-project="expense-tracker">
+                                        <span class="icon">👁️</span> View Details
+                                    </a>
+                                    <a href="https://github.com/benard00118/ExpenseTracker" target="_blank" class="github-btn">
+                                        <span class="icon">📂</span> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Project 5: Tuunganishe -->
+                <article class="project-slide" data-category="web">
+                    <div class="project-card full-width">
+                        <div class="project-header">
+                            <img src="{% static 'main/media/tuunganishe-homepage.png' %}" alt="Tuunganishe Platform Preview" class="project-image lazy-image" data-src="{% static 'main/media/tuunganishe-homepage.png' %}">
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-main">
+                                <h3>Tuunganishe – Reconnecting Lost Connections</h3>
+                                <div class="project-tags">
+                                    <span class="tag">Featured</span>
+                                    <span class="tag">Full Stack</span>
+                                    <span class="tag">Social Impact</span>
+                                </div>
+                                
+                                <div class="project-description">
+                                    <p>A web-based platform designed to help individuals in Kenya and beyond reconnect with lost relatives, friends, or former acquaintances. Addressing the profound social challenge of disconnection through technology.</p>
+                                    
+                                    <div class="project-highlights">
+                                        <div class="highlight">
+                                            <span class="highlight-icon">🌍</span>
+                                            <span>Regional Impact</span>
+                                        </div>
+                                        <div class="highlight">
+                                            <span class="highlight-icon">❤️</span>
+                                            <span>Social Good</span>
+                                        </div>
+                                    </div>
+            
+                                    <div class="key-features">
+                                        <h4>Key Features</h4>
+                                        <ul>
+                                            <li>Intelligent search algorithms for finding lost connections</li>
+                                            <li>Emotionally-driven UI/UX focused on reconnection</li>
+                                            <li>Community support system for collective searching</li>
+                                            <li>Secure identity verification process</li>
+                                        </ul>
+                                    </div>
+                                </div>
+            
+                                <div class="project-tech-stack">
+                                    <h4>Technologies Used</h4>
+                                    <div class="tech-badges">
+                                        <span class="tech-badge">React.js</span>
+                                        <span class="tech-badge">Django</span>
+                                        <span class="tech-badge">PostgreSQL</span>
+                                        <span class="tech-badge">AWS</span>
+                                        <span class="tech-badge">Google Cloud</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="preview-btn" data-project="tuunganishe">
+                                        <span class="icon">👁️</span> View Details
+                                    </a>
+                                    <a href="https://github.com/n-cognto/tuunganishe" target="_blank" class="github-btn">
+                                        <span class="icon">📂</span> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                
+                
+                        
+                
+                {% for project in dynamic_projects %}
+                <!-- Django generated projects from database -->
+                <article class="project-slide" data-category="{{ project.category|lower }}">
+                    <div class="project-card full-width">
+                        <div class="project-header">
+                            {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }} Preview" class="project-image">
+                            {% else %}
+                            <div class="project-image-placeholder">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-main">
+                                <h3>{{ project.title }}</h3>
+                                <div class="project-tags">
+                                    {% if project.featured %}<span class="tag">Featured</span>{% endif %}
+                                    <span class="tag">{{ project.category }}</span>
+                                </div>
+                                
+                                <div class="project-description">
+                                    <p>{{ project.description|truncatechars:150 }}</p>
+                                </div>
+            
+                                <div class="project-tech-stack">
+                                    <h4>Technologies Used</h4>
+                                    <div class="tech-badges">
+                                        {% for tech in project.technologies.all %}
+                                        <span class="tech-badge">{{ tech.name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="preview-btn" data-project="{{ project.id }}">
+                                        <span class="icon">👁️</span> View Details
+                                    </a>
+                                    {% if project.github_url %}
+                                    <a href="{{ project.github_url }}" target="_blank" class="github-btn">
+                                        <span class="icon">📂</span> Source Code
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            
+            <!-- Navigation arrows for the carousel -->
+            <button class="carousel-nav prev-project" id="prevProject" aria-label="Previous project">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-nav next-project" id="nextProject" aria-label="Next project">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Project navigation indicators -->
+            <div class="project-indicators" id="projectIndicators">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="certifications" class="cert-carousel" aria-label="Certifications carousel">
+    <h2 class="cert-title">Certifications</h2>
+    <div class="carousel-container" id="carousel">
+        <div class="carousel-track" id="carouselTrack" aria-live="polite">
+            {% for cert in certifications %}
+            <div class="cert-slide {% if forloop.first %}active{% endif %}" role="tabpanel" aria-label="Slide {{ forloop.counter }} of {{ certifications|length }}">
+                <div class="cert-card {% if not cert.link %}no-link{% endif %}" data-link="{{ cert.link|default:'' }}" role="button" tabindex="0">
+                    <img src="{% static cert.logo %}" alt="{{ cert.platform }} logo" class="cert-logo" loading="lazy">
+                    <div class="cert-info">
+                        <h3>{{ cert.title }}</h3>
+                        <p>{{ cert.platform }}</p>
+                        <p>{{ cert.date }}</p>
+                        {% if not cert.link %}<p class="visually-hidden">No link available</p>{% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default certifications if none in database -->
+            <div class="cert-slide active" role="tabpanel" aria-label="Slide 1 of 12">
+                <div class="cert-card" data-link="" role="button" tabindex="0">
+                    <img src="{% static 'main/media/alx-logo.png' %}" alt="ALX Africa logo" class="cert-logo" loading="lazy">
+                    <div class="cert-info">
+                        <h3>Virtual Assistant</h3>
+                        <p>ALX Africa</p>
+                        <p>Sep 2024</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cert-slide" role="tabpanel" aria-label="Slide 2 of 12">
+                <div class="cert-card" data-link="https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv" role="button" tabindex="0">
+                    <img src="{% static 'main/media/ibm-logo.jpeg' %}" alt="IBM logo" class="cert-logo" loading="lazy">
+                    <div class="cert-info">
+                        <h3>IBM Cyber Security Fundamentals</h3>
+                        <p>IBM</p>
+                        <p>Nov 2024</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cert-slide" role="tabpanel" aria-label="Slide 3 of 12">
+                <div class="cert-card" data-link="https://drive.google.com/file/d/151bCSGRgKV_H3iOpW0AznjYVf-81KTgt/view?usp=drive_link" role="button" tabindex="0">
+                    <img src="{% static 'main/media/udemy-logo.jpeg' %}" alt="Udemy logo" class="cert-logo" loading="lazy">
+                    <div class="cert-info">
+                        <h3>Introduction to Exploits</h3>
+                        <p>Udemy</p>
+                        <p>February 2024</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <button class="carousel-button prev-button" id="prevButton" aria-label="Previous slide">←</button>
+        <button class="carousel-button next-button" id="nextButton" aria-label="Next slide">→</button>
+        
+        <div class="carousel-dots" id="carouselDots" role="tablist">
+            <!-- Dots will be populated by JavaScript -->
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="contact-description">
+            Feel free to reach out for collaborations, opportunities, or inquiries. I'm here to help!
+        </p>
+
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form method="post" action="{% url 'main:contact_form' %}" class="contact-form" id="contactForm" aria-labelledby="contact-form-title" novalidate>
+                    {% csrf_token %}
+                    <h2 id="contact-form-title" class="sr-only">Contact Me</h2>
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required aria-required="true" minlength="2" maxlength="100">
+                        <span class="error" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        <span class="error" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required aria-required="true" minlength="10" maxlength="500"></textarea>
+                        <span class="error" role="alert"></span>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" aria-label="Send Message">
+                        <span class="spinner" aria-hidden="true" style="display: none;">🔄</span>
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info-container">
+                <h3>Contact Information</h3>
+                <p>
+                    <a href="mailto:benardopeter4@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i> benardopeter4@gmail.com
+                    </a>
+                </p>
+                <p>
+                    <a href="https://wa.me/254113169506" target="_blank" class="contact-link">
+                        <i class="fab fa-whatsapp"></i> +254 113 169 506
+                    </a>
+                </p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> Nakuru, Kenya
+                </p>
+
+                <h3>Follow Me</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin" style="background-color: rgb(136, 127, 127);"></i>
+                    </a>
+                    <a href="https://github.com/n-cognto" target="_blank" aria-label="GitHub Profile">
+                        <i class="fab fa-github" style="background-color: rgb(136, 127, 127); width: 30px; height: 30px;"></i>
+                    </a>
+                    <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" aria-label="TryHackMe Profile">
+                        <img src="{% static 'main/media/simple-icons--tryhackme.svg' %}" alt="TryHackMe" style="width: 30px; height: 30px;">
+                    </a>
+                    <a href="https://bsky.app/profile/n-cognto.bsky.social" target="_blank" aria-label="Bluesky Profile">
+                        <i class="fas fa-cloud" style="background-color: rgb(136, 127, 127); width: 30px; height: 30px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
