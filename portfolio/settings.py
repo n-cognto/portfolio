@@ -26,8 +26,14 @@ SECRET_KEY = 'django-insecure-*0h%vvfca6r-k_bqg^-4f-mr(fv65+p-8rhgd_0@!$+q5y-$ql
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "https://portfolio-production-32d7.up.railway.app",
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -38,16 +44,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',  # Add our main app
-    'blogs', # Add blogs app
-    'newsletter', # Add newsletter app
-    'ckeditor', # Add ckeditor for rich text
+    'corsheaders',  
+    'main',  
+    'blogs', 
+    'newsletter', 
+    'ckeditor', 
     'csp',  # Add django-csp for Content Security Policy
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Add CORS middleware - must be before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
