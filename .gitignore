@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+*.pot
+*.pyc
+
+
+# Django Migrations
+**/migrations/
+
+# Environment Variables
+.env
+.env.*
+.streambay
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Virtual Environment
+venv/
+env/
+
+# Other
+*.swp
+*.bak
+*.tmp
+
+# Node (if you have front-end assets too)
+node_modules/
+package-lock.json
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# Pycharm test results
+.idea/
+
+# Other cache
+.cache/
+*.toml
+.python-version
