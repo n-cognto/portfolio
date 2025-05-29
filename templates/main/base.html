@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Benard Karanja - Cybersecurity Specialist and Full Stack Developer. Expertise in ethical hacking, web development, and innovative digital solutions.">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Benard Karanja - Portfolio">
+    <meta property="og:description" content="Cybersecurity Specialist & Full Stack Developer portfolio showcasing skills, projects, and certifications.">
+    <meta property="og:image" content="{% static 'main/media/Oranjo-Laiv.png' %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Benard Karanja - Portfolio">
+    <meta name="twitter:description" content="Cybersecurity Specialist & Full Stack Developer portfolio showcasing skills, projects, and certifications.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://platform.linkedin.com 'unsafe-inline'; style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://platform.linkedin.com;">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Benard Karanja",
+        "jobTitle": "Cybersecurity Specialist & Full Stack Developer",
+        "alumniOf": "JOOUST University",
+        "skills": ["Ethical Hacking", "Web Development", "Python Programming", "Cybersecurity"],
+        "url": "{{ request.build_absolute_uri }}"
+    }
+    </script>
+    <title>{% block title %}Benard Karanja - Portfolio{% endblock %}</title>
+    <link rel="preload" href="{% static 'main/media/Oranjo-Laiv.png' %}" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' dy='.35em' text-anchor='middle' font-size='70'>BK</text></svg>">
+    <link rel="alternate icon" href="{% static 'main/media/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'newsletter/css/newsletter.css' %}">
+    <script src="{% static 'main/js/script.js' %}" defer></script>
+    {% block extra_css %}{% endblock %}
+    {% block extra_js %}{% endblock %}
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="animated-gradient"></div>
+        <div class="logo-container">
+            <img src="{% static 'main/media/NcogntoTech.png' %}" alt="NcogntoTech Logo" class="header-logo">
+        </div>
+        <h1>Benard Karanja</h1>
+        <p>Cybersecurity Specialist & Full Stack Developer</p>
+        <div class="social-links" aria-label="Social Media Links">
+            <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://github.com/n-cognto" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+            <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" rel="noopener noreferrer" aria-label="TryHackMe Profile"><img src="{% static 'main/media/simple-icons--tryhackme.svg' %}" alt="TryHackMe Profile" style="width: 30px; height: 30px;"></a>
+        </div>
+    </header>
+    
+    <nav class="nav" role="navigation">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false">
+            <div class="hamburger"></div>
+        </button>
+        <ul>
+            <li><a href="{% url 'main:home' %}#about" class="nav-link internal-link" aria-label="About section">About</a></li>
+            <li><a href="{% url 'main:home' %}#skills" class="nav-link internal-link" aria-label="Skills section">Skills</a></li>
+            <li><a href="{% url 'main:home' %}#projects" class="nav-link internal-link" aria-label="Projects section">Projects</a></li>
+            <li><a href="{% url 'main:home' %}#certifications" class="nav-link internal-link" aria-label="Certifications section">Certifications</a></li>
+            <li><a href="{% url 'blogs:post_list' %}" class="nav-link external-link" aria-label="Blog">Blog</a></li>
+            <li><a href="{% url 'main:home' %}#contact" class="nav-link internal-link" aria-label="Contact section">Contact</a></li>
+        </ul>
+    </nav>
+    
+    {% block content %}{% endblock %}
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Benard Karanja</h3>
+                <p>Cybersecurity Specialist & Full Stack Developer</p>
+                <p>Building secure, scalable digital solutions</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'main:home' %}#about" class="internal-link">About</a></li>
+                    <li><a href="{% url 'main:home' %}#skills" class="internal-link">Skills</a></li>
+                    <li><a href="{% url 'main:home' %}#projects" class="internal-link">Projects</a></li>
+                    <li><a href="{% url 'main:home' %}#certifications" class="internal-link">Certifications</a></li>
+                    <li><a href="{% url 'blogs:post_list' %}" class="external-link">Blog</a></li>
+                    <li><a href="{% url 'main:home' %}#contact" class="internal-link">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Stay updated with my latest articles, projects, and tech insights.</p>
+                <form action="{% url 'newsletter:subscribe' %}" method="post" class="newsletter-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name (optional)" class="newsletter-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required class="newsletter-input">
+                    </div>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/benardkaranja/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/n-cognto" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                    <a href="https://tryhackme.com/r/p/NcogNto" target="_blank" rel="noopener noreferrer" aria-label="TryHackMe Profile"><img src="{% static 'main/media/simple-icons--tryhackme.svg' %}" alt="TryHackMe Profile" style="width: 24px; height: 24px;"></a>
+                    <a href="https://wa.me/254113169506" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://bsky.app/profile/n-cognto.bsky.social" target="_blank" aria-label="Bluesky Profile">
+                        <i class="fas fa-cloud" style="background-color: rgb(136, 127, 127); width: 30px; height: 30px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {% now "Y" %} Benard Karanja. All rights reserved.</p>
+            <p>Last updated: {% now "F Y" %} | Built with <i class="fas fa-heart"></i> and Django</p>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    {% block extra_body %}{% endblock %}
+</body>
+</html>
