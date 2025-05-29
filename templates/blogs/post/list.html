@@ -1,0 +1,95 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Blog | Benard Karanja{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blogs/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="blog-section container">
+    <h1 class="section-title">Blog</h1>
+    
+    <div class="blog-container">
+        <div class="blog-main">
+            {% if category %}
+                <h2 class="category-title">Category: {{ category.name }}</h2>
+            {% endif %}
+            
+            <div class="blog-posts">
+                {% for post in posts %}
+                    <article class="blog-post">
+                        {% if post.featured_image %}
+                            <div class="post-image">
+                                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                            </div>
+                        {% endif %}
+                        <div class="post-content">
+                            <h2 class="post-title">
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                            </h2>
+                            <div class="post-meta">
+                                <span class="post-date">
+                                    <i class="far fa-calendar-alt"></i> {{ post.publish|date:"F d, Y" }}
+                                </span>
+                                <span class="post-author">
+                                    <i class="far fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
+                                </span>
+                                <span class="post-category">
+                                    <i class="far fa-folder"></i> 
+                                    <a href="{% url 'blogs:category_detail' post.category.slug %}">
+                                        {{ post.category.name }}
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="post-excerpt">
+                                {{ post.content|truncatewords:30|linebreaks }}
+                            </div>
+                            <a href="{{ post.get_absolute_url }}" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                {% empty %}
+                    <p class="no-posts">No posts available.</p>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if posts.has_other_pages %}
+                <div class="pagination">
+                    {% if posts.has_previous %}
+                        <a href="?page={{ posts.previous_page_number }}" class="pagination-link">&laquo; Previous</a>
+                    {% endif %}
+                    
+                    {% for num in posts.paginator.page_range %}
+                        {% if posts.number == num %}
+                            <span class="pagination-link current">{{ num }}</span>
+                        {% else %}
+                            <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if posts.has_next %}
+                        <a href="?page={{ posts.next_page_number }}" class="pagination-link">Next &raquo;</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <aside class="blog-sidebar">
+            <div class="sidebar-widget categories-widget">
+                <h3 class="widget-title">Categories</h3>
+                <ul class="categories-list">
+                    {% for cat in categories %}
+                        <li>
+                            <a href="{% url 'blogs:category_detail' cat.slug %}" {% if category.slug == cat.slug %}class="active"{% endif %}>
+                                {{ cat.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+    </div>
+</section>
+{% endblock %}
