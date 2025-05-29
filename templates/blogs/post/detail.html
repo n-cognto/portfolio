@@ -1,0 +1,115 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }} | Benard Karanja{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blogs/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="blog-detail-section container">
+    <article class="blog-post-detail">
+        <header class="post-header">
+            <h1 class="post-title">{{ post.title }}</h1>
+            <div class="post-meta">
+                <span class="post-date">
+                    <i class="far fa-calendar-alt"></i> {{ post.publish|date:"F d, Y" }}
+                </span>
+                <span class="post-author">
+                    <i class="far fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
+                </span>
+                <span class="post-category">
+                    <i class="far fa-folder"></i> 
+                    <a href="{% url 'blogs:category_detail' post.category.slug %}">
+                        {{ post.category.name }}
+                    </a>
+                </span>
+            </div>
+        </header>
+        
+        {% if post.featured_image %}
+        <div class="post-featured-image">
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+        </div>
+        {% endif %}
+        
+        <div class="post-content">
+            {{ post.content|linebreaks }}
+        </div>
+        
+        <div class="post-navigation">
+            <a href="{% url 'blogs:post_list' %}" class="back-to-blog">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+        </div>
+    </article>
+    
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h2 class="comments-title">Comments ({{ comments.count }})</h2>
+        
+        <!-- Comment Form -->
+        <div class="comment-form-container">
+            <h3>Leave a Comment</h3>
+            <form method="post" action="{% url 'blogs:add_comment' post.id %}" class="comment-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="body">Comment</label>
+                    <textarea id="body" name="body" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Post Comment</button>
+            </form>
+        </div>
+        
+        <!-- Display Comments -->
+        <div class="comments-list">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-meta">
+                        <span class="comment-author">{{ comment.name }}</span>
+                        <span class="comment-date">{{ comment.created|date:"F d, Y" }}</span>
+                    </div>
+                    <div class="comment-content">
+                        {{ comment.body|linebreaks }}
+                    </div>
+                </div>
+            {% empty %}
+                <p class="no-comments">Be the first to comment on this post.</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Related Posts -->
+    {% if related_posts %}
+    <div class="related-posts">
+        <h2 class="related-posts-title">Related Posts</h2>
+        <div class="related-posts-grid">
+            {% for related in related_posts %}
+                <div class="related-post">
+                    {% if related.featured_image %}
+                        <div class="related-post-image">
+                            <img src="{{ related.featured_image.url }}" alt="{{ related.title }}">
+                        </div>
+                    {% endif %}
+                    <h3 class="related-post-title">
+                        <a href="{{ related.get_absolute_url }}">{{ related.title }}</a>
+                    </h3>
+                    <div class="related-post-meta">
+                        <span class="related-post-date">{{ related.publish|date:"F d, Y" }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
