@@ -1,0 +1,78 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Unsubscribe Successful | Benard Karanja{% endblock %}
+
+{% block extra_css %}
+<style>
+    .success-section {
+        padding: 80px 0;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .success-container {
+        background: var(--card-bg);
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .success-icon {
+        font-size: 4rem;
+        color: #2ecc71;
+        margin-bottom: 20px;
+    }
+    
+    .success-title {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: var(--heading-color);
+    }
+    
+    .home-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+        margin-top: 20px;
+        transition: background-color 0.2s ease;
+    }
+    
+    .home-btn:hover {
+        background-color: var(--primary-dark);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="success-section">
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <h1 class="success-title">Successfully Unsubscribed</h1>
+        
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>You have been successfully unsubscribed from our newsletter. You will no longer receive emails from us.</p>
+        {% endif %}
+        
+        <p>If you change your mind, you can always subscribe again using the form on our website.</p>
+        
+        <a href="{% url 'main:home' %}" class="home-btn">Return to Homepage</a>
+    </div>
+</section>
+{% endblock %}
