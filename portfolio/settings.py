@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*0h%vvfca6r-k_bqg^-4f-mr(fv65+p-8rhgd_0@!$+q5y-$ql'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise middleware - add right after SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Add CORS middleware - must be before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
@@ -174,6 +175,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# WhiteNoise settings for serving static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds
+WHITENOISE_AUTOREFRESH = DEBUG  # Refresh static files on each request while in debug mode
+WHITENOISE_USE_FINDERS = DEBUG  # Look up files that aren't in STATICFILES_DIRS while in debug mode
+WHITENOISE_MANIFEST_STRICT = False  # Set to False to avoid issues with missing files
 
 # Media files (User uploaded files)
 MEDIA_URL = '/media/'
