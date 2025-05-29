@@ -16,11 +16,34 @@ def home(request):
     skills = Skill.objects.all()
     certificates = Certificate.objects.all()
     
+    # Format certificates for the template to match JavaScript structure
+    formatted_certificates = []
+    for cert in certificates:
+        # Check if image path contains 'media/' to avoid duplication
+        image_path = str(cert.image) if cert.image else "certificate-default.png"
+        
+        # Remove media/ prefix if present to avoid path duplication
+        if image_path.startswith('media/'):
+            # Just use the path as is since it already includes media/
+            logo_path = image_path
+        else:
+            # Otherwise add main/media/ prefix
+            logo_path = f"main/media/{image_path}"
+            
+        formatted_cert = {
+            'title': cert.name,
+            'platform': cert.issuing_organization,
+            'date': cert.issue_date.strftime('%B %Y'),
+            'logo': logo_path,
+            'link': cert.url or ""
+        }
+        formatted_certificates.append(formatted_cert)
+    
     # Prepare context for the template
     context = {
         'projects': projects,
         'skills': skills,
-        'certificates': certificates,
+        'certificates': formatted_certificates,
     }
     
     return render(request, 'main/index.html', context)
