@@ -464,6 +464,101 @@ function initScrollToTop() {
     }
 }
 
+// Certificates data
+const certificationsData = [
+    {
+        title: "Virtual Assistant",
+        platform: "ALX Africa",
+        date: "Sep 2024",
+        logo: "media/alx-logo.png",
+        link: ""
+    },
+    {
+        title: "IBM Cyber Security Fundamentals",
+        platform: "IBM",
+        date: "Nov 2024",
+        logo: "media/ibm-logo.jpeg",
+        link: "https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv"
+    },
+    {
+        title: "Introduction to Exploits",
+        platform: "Udemy",
+        date: "February 2024",
+        logo: "media/udemy-logo.jpeg",
+        link: "https://drive.google.com/file/d/151bCSGRgKV_H3iOpW0AznjYVf-81KTgt/view?usp=drive_link"
+    },
+    {
+        title: "Python for Everybody",
+        platform: "Try Kibo School",
+        date: "March 2024",
+        logo: "media/python-logo.jpeg",
+        link: ""
+    },
+    {
+        title: "Artificial Intelligence",
+        platform: "IBM SkillBuild",
+        date: "June 2024",
+        logo: "media/ibm-logo.jpeg",
+        link: "https://www.credly.com/earner/earned/badge/23be8694-6541-457f-a02f-28e91358bfea"
+    },
+    {
+        title: "Our Future with AI",
+        platform: "ALX Africa",
+        date: "June 2024",
+        logo: "media/alx-logo.png",
+        link: "https://drive.google.com/file/d/1HC1PRgQoEXt5lsJBq8oPxPj5dThwOMhe/view?usp=drive_link"
+    },
+    {
+        title: "Python Basics",
+        platform: "Hackerrank",
+        date: "March 2024",
+        logo: "media/python-logo.jpeg",
+        link: "https://drive.google.com/file/d/1IWAJQoSBuqPqQG0RZYZERIjor3pSzk8s/view?usp=drive_link"
+    },
+    {
+        title: "Cisco CyberShujaa Ethical Hacking",
+        platform: "Cisco",
+        date: "Dec 2024",
+        logo: "media/cyber-shujaa.jpeg",
+        link: "https://www.credly.com/badges/ad9cca44-6a8d-4658-8dac-6d800b0e3170/public_url"
+    },
+    {
+        title: "Web Development, Software Engineering, Database Administration & Python Programming",
+        platform: "Power Learn Project",
+        date: "Dec 2024",
+        logo: "media/power-learn.jpeg",
+        link: "https://drive.google.com/file/d/1LF84BkzE0_PFTrdzFbWgLy_ZuOv7G2NT/view?usp=drive_link"
+    },
+    {
+        title: "Information Technology Fundamentals",
+        platform: "IBM SkillBuild",
+        date: "Dec 2024",
+        logo: "media/ibm-logo.jpeg",
+        link: "https://www.credly.com/badges/3f0e2914-f90d-461a-bb01-e80b03b3499d/public_url"
+    },
+    {
+        title: "Emerging Tech",
+        platform: "IBM SkillBuild",
+        date: "Dec 2024",
+        logo: "media/ibm-logo.jpeg",
+        link: "https://www.credly.com/badges/44131d76-1d84-44a1-b3b4-7a5dd009358b/public_url"
+    },
+    {
+        title: "Advent of Cyber 2024",
+        platform: "TryHackMe",
+        date: "Dec 2024",
+        logo: "media/tryhackme.jpeg",
+        link: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-SKFNHTF5K6.pdf"
+    },
+    {
+        title: "IBM Cyber-Security with Capstone",
+        platform: "IBM",
+        date: "Apil 2025",
+        logo: "media/ibm-logo.jpeg",
+        link: "https://www.credly.com/badges/f5dfe17d-fa3c-48e6-b078-64673e19e06f/linked_in?t=smy6uv"
+    }
+];
+
 // Certificate carousel functionality
 function initCertificateCarousel() {
     const carousel = document.getElementById('carousel');
@@ -476,6 +571,78 @@ function initCertificateCarousel() {
     if (!carousel || !track || !dotsContainer || !progressBar || !prevButton || !nextButton) {
         console.warn('Certificate carousel elements not found');
         return;
+    }
+    
+    // Load certificates dynamically if track is empty
+    if (track.children.length === 0) {
+        loadCertificates();
+    }
+    
+    let currentSlide = 0;
+    let autoPlayInterval = null;
+    let isAnimating = false;
+    
+    // Get all slides
+    const slides = track.querySelectorAll('.cert-slide');
+    const totalSlides = slides.length;
+    
+    if (totalSlides === 0) {
+        console.warn('No certificate slides found');
+        return;
+    }
+    
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    // Initialize carousel
+    updateCarousel();
+    startAutoPlay();
+    
+    // Navigation buttons
+    prevButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        prevSlide();
+    });
+    
+    nextButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        nextSlide();
+    });
+    
+    // Helper function to load certificates dynamically
+    function loadCertificates() {
+        // Clear existing content
+        track.innerHTML = '';
+        
+        // Add each certificate from the data
+        certificationsData.forEach((cert, index) => {
+            const slide = document.createElement('div');
+            slide.className = `cert-slide ${index === 0 ? 'active' : ''}`;
+            slide.setAttribute('role', 'tabpanel');
+            slide.setAttribute('aria-label', `Slide ${index + 1} of ${certificationsData.length}`);
+            
+            slide.innerHTML = `
+                <div class="cert-card ${cert.link ? '' : 'no-link'}" data-link="${cert.link}" role="button" tabindex="0">
+                    <img src="/static/main/${cert.logo}" alt="${cert.platform} logo" class="cert-logo" loading="lazy">
+                    <div class="cert-info">
+                        <h3>${cert.title}</h3>
+                        <p>${cert.platform}</p>
+                        <p>${cert.date}</p>
+                        ${cert.link ? '' : '<p class="visually-hidden">No link available</p>'}
+                    </div>
+                </div>
+            `;
+            
+            track.appendChild(slide);
+        });
     }
     
     let currentSlide = 0;
