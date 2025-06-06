@@ -645,45 +645,6 @@ function initCertificateCarousel() {
         });
     }
     
-    let currentSlide = 0;
-    let autoPlayInterval = null;
-    let isAnimating = false;
-    
-    // Get all slides
-    const slides = track.querySelectorAll('.cert-slide');
-    const totalSlides = slides.length;
-    
-    if (totalSlides === 0) {
-        console.warn('No certificate slides found');
-        return;
-    }
-    
-    // Create dots
-    slides.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.className = `dot ${index === 0 ? 'active' : ''}`;
-        dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-        dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-    
-    // Initialize carousel
-    updateCarousel();
-    startAutoPlay();
-    
-    // Navigation buttons
-    prevButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        prevSlide();
-    });
-    
-    nextButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        nextSlide();
-    });
-    
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         // Only respond to keyboard events when focused on certificate section
