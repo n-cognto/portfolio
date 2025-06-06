@@ -1,95 +1,442 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block title %}Blog | Benard Karanja{% endblock %}
+{% block title %}
+    {% if search_query %}
+        Search: {{ search_query }} | Blog
+    {% elif category %}
+        {{ category.name }} | Blog
+    {% elif tag %}
+        {{ tag.name }} | Blog
+    {% else %}
+        Blog
+    {% endif %} | Benard Karanja
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'blogs/css/blog.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
+<section class="blog-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                {% if search_query %}
+                    Search Results for "{{ search_query }}"
+                {% elif category %}
+                    {{ category.name }}
+                {% elif tag %}
+                    Posts tagged with "{{ tag.name }}"
+                {% else %}
+                    Latest Articles & Insights
+                {% endif %}
+            </h1>
+            <p class="hero-subtitle">
+                {% if search_query %}
+                    Found {{ posts.paginator.count }} post{{ posts.paginator.count|pluralize }} matching your search
+                {% elif category %}
+                    {{ category.description|default:"Explore articles in this category" }}
+                {% elif tag %}
+                    Discover content related to {{ tag.name }}
+                {% else %}
+                    Sharing knowledge, experiences, and insights from my journey in tech
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
 <section class="blog-section container">
-    <h1 class="section-title">Blog</h1>
-    
+    <!-- Search Bar -->
+    <div class="search-section">
+        <form method="GET" action="{% url 'blogs:search' %}" class="search-form">
+            <div class="search-input-group">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" name="search" placeholder="Search articles..." value="{{ search_query }}" class="search-input">
+                <button type="submit" class="search-btn">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Featured Posts (only on main blog page) -->
+    {% if not search_query and not category and not tag and featured_posts %}
+    <div class="featured-section">
+        <h2 class="section-title">Featured Articles</h2>
+        <div class="featured-posts-grid">
+            {% for post in featured_posts %}
+                <article class="featured-post" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+                    {% if post.featured_image %}
+                        <div class="featured-post-image">
+                            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" loading="lazy">
+                            <div class="featured-overlay">
+                                <span class="featured-badge">Featured</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="featured-post-content">
+                        <div class="post-category" style="color: {{ post.category.color }}">
+                            <a href="{% url 'blogs:category_detail' post.category.slug %}">{{ post.category.name }}</a>
+                        </div>
+                        <h3 class="featured-post-title">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h3>
+                        <p class="featured-post-excerpt">{{ post.excerpt|default:post.content|truncatewords:20 }}</p>
+                        <div class="featured-post-meta">
+                            <div class="meta-left">
+                                <span class="post-date">
+                                    <i class="far fa-calendar-alt"></i> {{ post.publish|date:"M d, Y" }}
+                                </span>
+                                <span class="reading-time">
+                                    <i class="far fa-clock"></i> {{ post.reading_time }} min read
+                                </span>
+                            </div>
+                            <div class="post-stats">
+                                <span class="views">
+                                    <i class="far fa-eye"></i> {{ post.views }}
+                                </span>
+                                <span class="likes">
+                                    <i class="far fa-heart"></i> {{ post.likes }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     <div class="blog-container">
         <div class="blog-main">
-            {% if category %}
-                <h2 class="category-title">Category: {{ category.name }}</h2>
+            <!-- Filter Tags -->
+            {% if tags %}
+            <div class="tags-filter">
+                <h3>Popular Tags:</h3>
+                <div class="tags-list">
+                    {% for blog_tag in tags %}
+                        <a href="{% url 'blogs:tag_detail' blog_tag.slug %}" 
+                           class="tag-item {% if tag.slug == blog_tag.slug %}active{% endif %}">
+                            {{ blog_tag.name }}
+                            <span class="tag-count">{{ blog_tag.post_count }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
             {% endif %}
-            
-            <div class="blog-posts">
+
+            <!-- Blog Posts Grid -->
+            <div class="blog-posts-grid">
                 {% for post in posts %}
-                    <article class="blog-post">
-                        {% if post.featured_image %}
-                            <div class="post-image">
-                                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    <article class="blog-post-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:50 }}">
+                        <a href="{{ post.get_absolute_url }}" class="card-link">
+                            {% if post.featured_image %}
+                                <div class="post-image-container">
+                                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" loading="lazy" class="post-image">
+                                    <div class="post-overlay">
+                                        <span class="read-link">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="post-card-content">
+                                <div class="post-header">
+                                    <div class="post-category" style="background-color: {{ post.category.color }}20; color: {{ post.category.color }}">
+                                        <span>{{ post.category.name }}</span>
+                                    </div>
+                                    <div class="post-stats-mini">
+                                        <span class="views-mini">
+                                            <i class="far fa-eye"></i> {{ post.views }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <h2 class="post-card-title">
+                                    <span>{{ post.title }}</span>
+                                </h2>
+                                
+                                <p class="post-card-excerpt">{{ post.excerpt|default:post.content|truncatewords:15 }}</p>
+                                
+                                <!-- Tags -->
+                                {% if post.tags.all %}
+                                <div class="post-tags">
+                                    {% for post_tag in post.tags.all|slice:":3" %}
+                                        <span class="post-tag">{{ post_tag.name }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                
+                                <div class="post-card-footer">
+                                    <div class="post-meta-minimal">
+                                        <span class="post-date">{{ post.publish|date:"M d, Y" }}</span>
+                                        <span class="reading-time">{{ post.reading_time }} min read</span>
+                                    </div>
+                                    <div class="post-engagement">
+                                        <button class="like-btn" data-post-id="{{ post.id }}" onclick="event.stopPropagation();">
+                                            <i class="far fa-heart"></i>
+                                            <span class="like-count">{{ post.likes }}</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        {% endif %}
-                        <div class="post-content">
-                            <h2 class="post-title">
-                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                            </h2>
-                            <div class="post-meta">
-                                <span class="post-date">
-                                    <i class="far fa-calendar-alt"></i> {{ post.publish|date:"F d, Y" }}
-                                </span>
-                                <span class="post-author">
-                                    <i class="far fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
-                                </span>
-                                <span class="post-category">
-                                    <i class="far fa-folder"></i> 
-                                    <a href="{% url 'blogs:category_detail' post.category.slug %}">
-                                        {{ post.category.name }}
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="post-excerpt">
-                                {{ post.content|truncatewords:30|linebreaks }}
-                            </div>
-                            <a href="{{ post.get_absolute_url }}" class="read-more">Read More</a>
-                        </div>
+                        </a>
                     </article>
                 {% empty %}
-                    <p class="no-posts">No posts available.</p>
+                    <div class="no-posts-found">
+                        <div class="no-posts-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>No Posts Found</h3>
+                        <p>
+                            {% if search_query %}
+                                Sorry, no posts match your search for "{{ search_query }}". Try different keywords.
+                            {% else %}
+                                No posts are available at the moment. Check back soon!
+                            {% endif %}
+                        </p>
+                        {% if search_query %}
+                            <a href="{% url 'blogs:post_list' %}" class="btn-primary">View All Posts</a>
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
             
-            <!-- Pagination -->
+            <!-- Enhanced Pagination -->
             {% if posts.has_other_pages %}
-                <div class="pagination">
-                    {% if posts.has_previous %}
-                        <a href="?page={{ posts.previous_page_number }}" class="pagination-link">&laquo; Previous</a>
-                    {% endif %}
-                    
-                    {% for num in posts.paginator.page_range %}
-                        {% if posts.number == num %}
-                            <span class="pagination-link current">{{ num }}</span>
-                        {% else %}
-                            <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+                <nav class="pagination-nav" aria-label="Blog pagination">
+                    <div class="pagination-info">
+                        Showing {{ posts.start_index }}-{{ posts.end_index }} of {{ posts.paginator.count }} posts
+                    </div>
+                    <div class="pagination">
+                        {% if posts.has_previous %}
+                            <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}" class="pagination-link first" title="First page">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                            <a href="?page={{ posts.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" class="pagination-link prev" title="Previous page">
+                                <i class="fas fa-angle-left"></i> Previous
+                            </a>
                         {% endif %}
-                    {% endfor %}
-                    
-                    {% if posts.has_next %}
-                        <a href="?page={{ posts.next_page_number }}" class="pagination-link">Next &raquo;</a>
-                    {% endif %}
-                </div>
+                        
+                        {% for num in posts.paginator.page_range %}
+                            {% if posts.number == num %}
+                                <span class="pagination-link current" aria-current="page">{{ num }}</span>
+                            {% elif num > posts.number|add:-3 and num < posts.number|add:3 %}
+                                <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}" class="pagination-link">{{ num }}</a>
+                            {% elif num == 1 or num == posts.paginator.num_pages %}
+                                <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}" class="pagination-link">{{ num }}</a>
+                            {% elif num == posts.number|add:-4 or num == posts.number|add:4 %}
+                                <span class="pagination-ellipsis">…</span>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" class="pagination-link next" title="Next page">
+                                Next <i class="fas fa-angle-right"></i>
+                            </a>
+                            <a href="?page={{ posts.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}" class="pagination-link last" title="Last page">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </nav>
             {% endif %}
         </div>
         
+        <!-- Enhanced Sidebar -->
         <aside class="blog-sidebar">
+            <!-- Categories Widget -->
+            {% if categories %}
             <div class="sidebar-widget categories-widget">
-                <h3 class="widget-title">Categories</h3>
+                <h3 class="widget-title">
+                    <i class="fas fa-folder-open"></i>
+                    Categories
+                </h3>
                 <ul class="categories-list">
                     {% for cat in categories %}
-                        <li>
+                        <li class="category-item">
                             <a href="{% url 'blogs:category_detail' cat.slug %}" {% if category.slug == cat.slug %}class="active"{% endif %}>
-                                {{ cat.name }}
+                                <span class="category-name">{{ cat.name }}</span>
+                                <span class="category-count" style="background-color: {{ cat.color }}">{{ cat.post_count }}</span>
                             </a>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
+
+            <!-- Popular Posts Widget -->
+            {% if popular_posts %}
+            <div class="sidebar-widget popular-posts-widget">
+                <h3 class="widget-title">
+                    <i class="fas fa-fire"></i>
+                    Popular Posts
+                </h3>
+                <div class="popular-posts-list">
+                    {% for post in popular_posts %}
+                        <article class="popular-post-item">
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title|truncatechars:50 }}</a>
+                                </h4>
+                                <div class="popular-post-meta">
+                                    <span class="popular-post-date">{{ post.publish|date:"M d" }}</span>
+                                    <span class="popular-post-views">
+                                        <i class="far fa-eye"></i> {{ post.views }}
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Recent Posts Widget -->
+            {% if recent_posts %}
+            <div class="sidebar-widget recent-posts-widget">
+                <h3 class="widget-title">
+                    <i class="fas fa-clock"></i>
+                    Recent Posts
+                </h3>
+                <div class="recent-posts-list">
+                    {% for post in recent_posts %}
+                        <article class="recent-post-item">
+                            {% if post.featured_image %}
+                                <div class="recent-post-image">
+                                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                                </div>
+                            {% endif %}
+                            <div class="recent-post-content">
+                                <h4 class="recent-post-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title|truncatechars:40 }}</a>
+                                </h4>
+                                <div class="recent-post-meta">
+                                    <span class="recent-post-date">{{ post.publish|date:"M d, Y" }}</span>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Archive Widget -->
+            {% if archive_dates %}
+            <div class="sidebar-widget archive-widget">
+                <h3 class="widget-title">
+                    <i class="fas fa-archive"></i>
+                    Archives
+                </h3>
+                <ul class="archive-list">
+                    {% for date in archive_dates %}
+                        <li class="archive-item">
+                            <a href="{% url 'blogs:archive_month' date.year date.month %}">
+                                {{ date|date:"F Y" }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </aside>
     </div>
 </section>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
+
+    // Initialize theme based on localStorage or system preference
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    });
+
+    // Like functionality
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.dataset.postId;
+            const likeCount = this.querySelector('.like-count');
+            const icon = this.querySelector('i');
+            
+            fetch(`/blog/like_post/${postId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    likeCount.textContent = data.likes;
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.classList.add('liked');
+                    
+                    // Add animation
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+    // Back to top functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+    
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Search form enhancement
+    const searchInput = document.querySelector('.search-input');
+    const searchForm = document.querySelector('.search-form');
+    
+    searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            searchForm.submit();
+        }
+    });
+</script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 {% endblock %}

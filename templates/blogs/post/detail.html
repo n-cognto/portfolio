@@ -1,115 +1,555 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block title %}{{ post.title }} | Benard Karanja{% endblock %}
+{% block title %}{{ post.meta_title|default:post.title }} | Benard Karanja{% endblock %}
+
+{% block meta_description %}{{ post.meta_description|default:post.excerpt }}{% endblock %}
+
+{% block extra_head %}
+<!-- Additional CSP for blog detail pages -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://platform.linkedin.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https:; frame-src https: data:; media-src 'self' https:; object-src 'none'; base-uri 'self';">
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'blogs/css/blog.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 {% endblock %}
 
 {% block content %}
-<section class="blog-detail-section container">
-    <article class="blog-post-detail">
-        <header class="post-header">
-            <h1 class="post-title">{{ post.title }}</h1>
-            <div class="post-meta">
-                <span class="post-date">
-                    <i class="far fa-calendar-alt"></i> {{ post.publish|date:"F d, Y" }}
-                </span>
-                <span class="post-author">
-                    <i class="far fa-user"></i> {{ post.author.get_full_name|default:post.author.username }}
-                </span>
-                <span class="post-category">
-                    <i class="far fa-folder"></i> 
-                    <a href="{% url 'blogs:category_detail' post.category.slug %}">
-                        {{ post.category.name }}
-                    </a>
-                </span>
+<!-- Breadcrumb Navigation -->
+<nav class="breadcrumb-nav">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'main:home' %}">Home</a></li>
+            <li><a href="{% url 'blogs:post_list' %}">Blog</a></li>
+            <li><a href="{% url 'blogs:category_detail' post.category.slug %}">{{ post.category.name }}</a></li>
+            <li class="current">{{ post.title|truncatechars:50 }}</li>
+        </ol>
+    </div>
+</nav>
+
+<article class="blog-post-detail-container">
+    <div class="container">
+        <!-- Post Header -->
+        <header class="post-detail-header">
+            <div class="post-header-content">
+                <div class="post-category-badge" style="background-color: {{ post.category.color }}">
+                    <a href="{% url 'blogs:category_detail' post.category.slug %}">{{ post.category.name }}</a>
+                </div>
+                
+                <h1 class="post-detail-title">{{ post.title }}</h1>
+                
+                <div class="post-detail-meta">
+                    <div class="author-info">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-details">
+                            <span class="author-name">{{ post.author.get_full_name|default:post.author.username }}</span>
+                            <span class="author-title">Software Developer</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-meta-info">
+                        <div class="meta-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>{{ post.publish|date:"F d, Y" }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>{{ post.reading_time }} min read</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-eye"></i>
+                            <span>{{ post.views }} views</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
-        
-        {% if post.featured_image %}
-        <div class="post-featured-image">
-            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
-        </div>
-        {% endif %}
-        
-        <div class="post-content">
-            {{ post.content|linebreaks }}
-        </div>
-        
-        <div class="post-navigation">
-            <a href="{% url 'blogs:post_list' %}" class="back-to-blog">
-                <i class="fas fa-arrow-left"></i> Back to Blog
-            </a>
-        </div>
-    </article>
-    
-    <!-- Comments Section -->
-    <div class="comments-section">
-        <h2 class="comments-title">Comments ({{ comments.count }})</h2>
-        
-        <!-- Comment Form -->
-        <div class="comment-form-container">
-            <h3>Leave a Comment</h3>
-            <form method="post" action="{% url 'blogs:add_comment' post.id %}" class="comment-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+
+        <div class="post-detail-layout">
+            <!-- Main Content -->
+            <main class="post-detail-main">
+                <!-- Featured Image -->
+                {% if post.featured_image %}
+                <div class="post-featured-image-container">
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-featured-image">
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="body">Comment</label>
-                    <textarea id="body" name="body" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Post Comment</button>
-            </form>
-        </div>
-        
-        <!-- Display Comments -->
-        <div class="comments-list">
-            {% for comment in comments %}
-                <div class="comment">
-                    <div class="comment-meta">
-                        <span class="comment-author">{{ comment.name }}</span>
-                        <span class="comment-date">{{ comment.created|date:"F d, Y" }}</span>
-                    </div>
-                    <div class="comment-content">
-                        {{ comment.body|linebreaks }}
+                {% endif %}
+
+                <!-- Post Content -->
+                <div class="post-content-container">
+                    <div class="post-content">
+                        {{ post.content|linebreaks }}
                     </div>
                 </div>
-            {% empty %}
-                <p class="no-comments">Be the first to comment on this post.</p>
-            {% endfor %}
-        </div>
-    </div>
-    
-    <!-- Related Posts -->
-    {% if related_posts %}
-    <div class="related-posts">
-        <h2 class="related-posts-title">Related Posts</h2>
-        <div class="related-posts-grid">
-            {% for related in related_posts %}
-                <div class="related-post">
-                    {% if related.featured_image %}
-                        <div class="related-post-image">
-                            <img src="{{ related.featured_image.url }}" alt="{{ related.title }}">
+
+                <!-- Tags -->
+                {% if post.tags.all %}
+                <div class="post-tags-section">
+                    <h3>Tags</h3>
+                    <div class="post-tags-list">
+                        {% for tag in post.tags.all %}
+                            <a href="{% url 'blogs:tag_detail' tag.slug %}" class="post-tag-link">
+                                <i class="fas fa-tag"></i>{{ tag.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Post Actions -->
+                <div class="post-actions">
+                    <div class="post-engagement">
+                        <button class="like-btn" data-post-id="{{ post.id }}">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">{{ post.likes }}</span>
+                            <span class="like-text">Like</span>
+                        </button>
+                    </div>
+                    
+                    <div class="social-share">
+                        <span class="share-label">Share:</span>
+                        <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ request.build_absolute_uri }}" 
+                           target="_blank" class="share-btn twitter" title="Share on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                           target="_blank" class="share-btn facebook" title="Share on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
+                           target="_blank" class="share-btn linkedin" title="Share on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <button class="share-btn copy-link" data-url="{{ request.build_absolute_uri }}" title="Copy link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Post Navigation -->
+                <nav class="post-navigation">
+                    {% if previous_post %}
+                        <div class="nav-post prev-post">
+                            <span class="nav-label">Previous Post</span>
+                            <a href="{{ previous_post.get_absolute_url }}" class="nav-link">
+                                <span class="nav-title">{{ previous_post.title }}</span>
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
                         </div>
                     {% endif %}
-                    <h3 class="related-post-title">
-                        <a href="{{ related.get_absolute_url }}">{{ related.title }}</a>
-                    </h3>
-                    <div class="related-post-meta">
-                        <span class="related-post-date">{{ related.publish|date:"F d, Y" }}</span>
+                    
+                    <a href="{% url 'blogs:post_list' %}" class="back-to-blog-btn">
+                        <i class="fas fa-th-large"></i>
+                        <span>All Posts</span>
+                    </a>
+                    
+                    {% if next_post %}
+                        <div class="nav-post next-post">
+                            <span class="nav-label">Next Post</span>
+                            <a href="{{ next_post.get_absolute_url }}" class="nav-link">
+                                <span class="nav-title">{{ next_post.title }}</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    {% endif %}
+                </nav>
+
+                <!-- Comments Section -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2 class="comments-title">
+                            Comments <span class="comments-count">({{ comments.count }})</span>
+                        </h2>
+                    </div>
+                    
+                    <!-- Comment Form -->
+                    <div class="comment-form-container">
+                        <h3 class="comment-form-title">Leave a Comment</h3>
+                        <form method="post" action="{% url 'blogs:add_comment' post.id %}" class="comment-form" id="comment-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="parent_id" id="parent_id" value="">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" id="name" name="name" required class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required class="form-input">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="website">Website (optional)</label>
+                                <input type="url" id="website" name="website" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="body">Comment *</label>
+                                <textarea id="body" name="body" rows="5" required class="form-textarea" placeholder="Share your thoughts..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="cancel-reply-btn" id="cancel-reply" style="display: none;">
+                                    Cancel Reply
+                                </button>
+                                <button type="submit" class="submit-comment-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Post Comment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Comments List -->
+                    <div class="comments-list">
+                        {% for comment in comments %}
+                            <div class="comment" id="comment-{{ comment.id }}">
+                                <div class="comment-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <div class="comment-author">
+                                            {{ comment.name }}
+                                            {% if comment.website %}
+                                                <a href="{{ comment.website }}" target="_blank" class="author-website">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="comment-meta">
+                                            <span class="comment-date">{{ comment.created|date:"F d, Y \a\t g:i A" }}</span>
+                                            <button class="reply-btn" data-comment-id="{{ comment.id }}" data-author="{{ comment.name }}">
+                                                <i class="fas fa-reply"></i> Reply
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="comment-body">
+                                        {{ comment.body|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Replies -->
+                            {% if comment.replies.all %}
+                                <div class="replies-container">
+                                    {% for reply in comment.replies.all %}
+                                        <div class="comment reply" id="comment-{{ reply.id }}">
+                                            <div class="comment-avatar">
+                                                <i class="fas fa-user-circle"></i>
+                                            </div>
+                                            <div class="comment-content">
+                                                <div class="comment-header">
+                                                    <div class="comment-author">
+                                                        {{ reply.name }}
+                                                        {% if reply.website %}
+                                                            <a href="{{ reply.website }}" target="_blank" class="author-website">
+                                                                <i class="fas fa-external-link-alt"></i>
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="comment-meta">
+                                                        <span class="comment-date">{{ reply.created|date:"F d, Y \a\t g:i A" }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-body">
+                                                    {{ reply.body|linebreaks }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% empty %}
+                            <div class="no-comments">
+                                <div class="no-comments-icon">
+                                    <i class="far fa-comments"></i>
+                                </div>
+                                <h3>No comments yet</h3>
+                                <p>Be the first to share your thoughts about this post!</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="post-detail-sidebar">
+                <!-- Table of Contents -->
+                <div class="sidebar-widget toc-widget">
+                    <h3 class="widget-title">Table of Contents</h3>
+                    <div id="table-of-contents">
+                        <!-- Generated by JavaScript -->
                     </div>
                 </div>
-            {% endfor %}
+
+                <!-- Popular Posts -->
+                {% if popular_posts %}
+                <div class="sidebar-widget popular-posts-widget">
+                    <h3 class="widget-title">
+                        <i class="fas fa-fire"></i>
+                        Popular Posts
+                    </h3>
+                    <div class="popular-posts-list">
+                        {% for popular_post in popular_posts %}
+                            <article class="popular-post-item">
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">
+                                        <a href="{{ popular_post.get_absolute_url }}">{{ popular_post.title|truncatechars:50 }}</a>
+                                    </h4>
+                                    <div class="popular-post-meta">
+                                        <span class="popular-post-views">
+                                            <i class="far fa-eye"></i> {{ popular_post.views }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Recent Posts -->
+                {% if recent_posts %}
+                <div class="sidebar-widget recent-posts-widget">
+                    <h3 class="widget-title">
+                        <i class="fas fa-clock"></i>
+                        Recent Posts
+                    </h3>
+                    <div class="recent-posts-list">
+                        {% for recent_post in recent_posts %}
+                            <article class="recent-post-item">
+                                <div class="recent-post-content">
+                                    <h4 class="recent-post-title">
+                                        <a href="{{ recent_post.get_absolute_url }}">{{ recent_post.title|truncatechars:40 }}</a>
+                                    </h4>
+                                    <div class="recent-post-meta">
+                                        <span class="recent-post-date">{{ recent_post.publish|date:"M d" }}</span>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </aside>
         </div>
+
+        <!-- Related Posts -->
+        {% if related_posts %}
+        <section class="related-posts-section">
+            <h2 class="section-title">Related Articles</h2>
+            <div class="related-posts-grid">
+                {% for related in related_posts %}
+                    <article class="related-post-card">
+                        {% if related.featured_image %}
+                            <div class="related-post-image">
+                                <img src="{{ related.featured_image.url }}" alt="{{ related.title }}" loading="lazy">
+                            </div>
+                        {% endif %}
+                        <div class="related-post-content">
+                            <div class="related-post-category" style="color: {{ related.category.color }}">
+                                {{ related.category.name }}
+                            </div>
+                            <h3 class="related-post-title">
+                                <a href="{{ related.get_absolute_url }}">{{ related.title }}</a>
+                            </h3>
+                            <div class="related-post-meta">
+                                <span class="related-post-date">{{ related.publish|date:"M d, Y" }}</span>
+                                <span class="related-post-reading-time">{{ related.reading_time }} min read</span>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
     </div>
-    {% endif %}
-</section>
+</article>
+
+<!-- Progress Bar -->
+<div class="reading-progress">
+    <div class="progress-bar" id="reading-progress"></div>
+</div>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script>
+    // Initialize theme based on localStorage or system preference
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    });
+
+    // Reading progress bar
+    window.addEventListener('scroll', function() {
+        const article = document.querySelector('.post-content-container');
+        const progress = document.getElementById('reading-progress');
+        const backToTop = document.getElementById('back-to-top');
+        
+        if (article) {
+            const articleHeight = article.offsetHeight;
+            const articleTop = article.offsetTop;
+            const articleBottom = articleTop + articleHeight;
+            const scrollTop = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            
+            if (scrollTop >= articleTop && scrollTop <= articleBottom) {
+                const progressPercentage = ((scrollTop - articleTop) / articleHeight) * 100;
+                progress.style.width = Math.min(progressPercentage, 100) + '%';
+            }
+        }
+        
+        // Back to top button
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
+    });
+
+    // Back to top functionality
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Like functionality
+    document.querySelector('.like-btn').addEventListener('click', function() {
+        const postId = this.dataset.postId;
+        const likeCount = this.querySelector('.like-count');
+        const icon = this.querySelector('i');
+        
+        fetch(`/blog/like_post/${postId}/`, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                likeCount.textContent = data.likes;
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                this.classList.add('liked');
+                
+                // Add animation
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    // Copy link functionality
+    document.querySelector('.copy-link').addEventListener('click', function() {
+        const url = this.dataset.url;
+        navigator.clipboard.writeText(url).then(function() {
+            // Show success message
+            const originalIcon = document.querySelector('.copy-link i');
+            originalIcon.className = 'fas fa-check';
+            setTimeout(() => {
+                originalIcon.className = 'fas fa-link';
+            }, 2000);
+        });
+    });
+
+    // Comment reply functionality
+    document.querySelectorAll('.reply-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const commentId = this.dataset.commentId;
+            const authorName = this.dataset.author;
+            const parentIdInput = document.getElementById('parent_id');
+            const cancelBtn = document.getElementById('cancel-reply');
+            const commentForm = document.getElementById('comment-form');
+            const bodyTextarea = document.getElementById('body');
+            
+            parentIdInput.value = commentId;
+            cancelBtn.style.display = 'inline-block';
+            bodyTextarea.placeholder = `Reply to ${authorName}...`;
+            bodyTextarea.focus();
+            
+            // Scroll to form
+            commentForm.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Cancel reply functionality
+    document.getElementById('cancel-reply').addEventListener('click', function() {
+        const parentIdInput = document.getElementById('parent_id');
+        const bodyTextarea = document.getElementById('body');
+        
+        parentIdInput.value = '';
+        this.style.display = 'none';
+        bodyTextarea.placeholder = 'Share your thoughts...';
+    });
+
+    // Generate table of contents
+    function generateTOC() {
+        const headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4');
+        const toc = document.getElementById('table-of-contents');
+        
+        if (headings.length === 0) {
+            toc.innerHTML = '<p>No headings found</p>';
+            return;
+        }
+        
+        let tocHTML = '<ul class="toc-list">';
+        headings.forEach((heading, index) => {
+            const id = `heading-${index}`;
+            heading.id = id;
+            const level = heading.tagName.toLowerCase();
+            const text = heading.textContent;
+            
+            tocHTML += `<li class="toc-item toc-${level}">
+                <a href="#${id}" class="toc-link">${text}</a>
+            </li>`;
+        });
+        tocHTML += '</ul>';
+        
+        toc.innerHTML = tocHTML;
+        
+        // Add smooth scrolling to TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    // Initialize TOC when page loads
+    document.addEventListener('DOMContentLoaded', generateTOC);
+</script>
 {% endblock %}
