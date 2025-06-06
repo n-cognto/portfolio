@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('main.urls')),  # Include main app URLs
     path('blog/', include('blogs.urls', namespace='blogs')),  # Include blog app URLs
     path('newsletter/', include('newsletter.urls', namespace='newsletter')),  # Include newsletter app URLs
+    path('ckeditor5/', include('django_ckeditor_5.urls')),  # Include CKEditor 5 URLs
 ]
 
 # Add these URL patterns for serving static and media files during development

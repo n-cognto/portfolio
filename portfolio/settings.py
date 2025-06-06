@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'main',  
     'blogs', 
     'newsletter', 
-    'ckeditor', 
+    'django_ckeditor_5',  # Updated to secure CKEditor 5
     'csp',  # Add django-csp for Content Security Policy
 ]
 
@@ -200,10 +200,14 @@ EMAIL_TIMEOUT = 30
 SITE_URL = 'http://localhost:8000'  
 
 # CKEditor settings
-CKEDITOR_CONFIGS = {
+CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': 'full',
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
+                    'bulletedList', 'numberedList', 'blockQuote', 'imageUpload'],
         'height': 300,
         'width': '100%',
     },
 }
+
+CKEDITOR_5_UPLOAD_PATH = "uploads/"
+CKEDITOR_5_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
