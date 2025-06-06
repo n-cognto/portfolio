@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*0h%vvfca6r-k_bqg^-4f-mr(fv65+p-8rhgd_0@!$+q5y-$ql'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -65,39 +65,35 @@ MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',  # Add CSP middleware
 ]
 
-# Content Security Policy settings using the new format (django-csp 4.0+)
-CONTENT_SECURITY_POLICY = {
-    'DIRECTIVES': {
-        'default-src': ("'self'",),
-        'script-src': (
-            "'self'", 
-            "'unsafe-inline'",
-            "https://cdnjs.cloudflare.com",
-            "https://platform.linkedin.com",
-            "https://badges.linkedin.com"
-        ),
-        'style-src': (
-            "'self'", 
-            "'unsafe-inline'", 
-            "https://cdnjs.cloudflare.com"
-        ),
-        'img-src': (
-            "'self'", 
-            "data:", 
-            "https://*.linkedin.com"
-        ),
-        'connect-src': ("'self'",),
-        'font-src': (
-            "'self'", 
-            "https://cdnjs.cloudflare.com"
-        ),
-        'frame-src': (
-            "'self'", 
-            "https://platform.linkedin.com", 
-            "https://badges.linkedin.com"
-        ),
-    }
-}
+# Content Security Policy settings for django-csp 4.0
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = (
+    "'self'", 
+    "'unsafe-inline'",
+    "https://cdnjs.cloudflare.com",
+    "https://platform.linkedin.com",
+    "https://badges.linkedin.com"
+)
+CSP_STYLE_SRC = (
+    "'self'", 
+    "'unsafe-inline'", 
+    "https://cdnjs.cloudflare.com"
+)
+CSP_IMG_SRC = (
+    "'self'", 
+    "data:", 
+    "https://*.linkedin.com"
+)
+CSP_CONNECT_SRC = ("'self'",)
+CSP_FONT_SRC = (
+    "'self'", 
+    "https://cdnjs.cloudflare.com"
+)
+CSP_FRAME_SRC = (
+    "'self'", 
+    "https://platform.linkedin.com", 
+    "https://badges.linkedin.com"
+)
 
 ROOT_URLCONF = 'portfolio.urls'
 
