@@ -37,7 +37,7 @@ Check out the live demo at [https://portfolio-production-32d7.up.railway.app/](h
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/n-cognto/portfolio.git
    cd portfolio
    ```
 
